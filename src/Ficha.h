@@ -1,3 +1,4 @@
+ /*
  * Clase: Ficha
  * 
  * Responsabilidad: Representar una ficha en un juego de hacer coincidir fichas similares.
