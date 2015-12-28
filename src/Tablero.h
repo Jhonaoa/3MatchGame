@@ -12,7 +12,7 @@ class Tablero
 
         void tableroInicial(int filas, int columnas);
 
-        void setTableroInicial(int *matriz[F][C]);
+        void setTableroInicial(int matriz[F][C]);
 
         void getTableroInicial();
 

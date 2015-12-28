@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 
-
+    cout<<"mi plataforma es: "<< 8*sizeof(int)<<" bytes"<<endl;
     Tablero miTablero;
     miTablero.tableroInicial(8,8);
 

@@ -42,9 +42,9 @@ void Tablero::tableroInicial(int filas, int columnas)
 
 }
 
-void Tablero::setTableroInicial(int *matriz[F][C])
+void Tablero::setTableroInicial(int matriz[F][C])
 {
-    tablero[F][C] = (*matriz[F][C]);
+    tablero[F][C] = matriz[F][C];
 }
 
 
