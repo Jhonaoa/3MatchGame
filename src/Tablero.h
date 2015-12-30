@@ -16,7 +16,7 @@ class Tablero
 
         void getTableroInicial();
         
-        void leerMatrizDesdeArchivo ();
+        void leerMatrizDesdeArchivo (int *apuntador );
 
 
     protected:
