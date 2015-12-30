@@ -57,7 +57,7 @@ void Tablero::getTableroInicial()
 
 /* tablero::leerTableroDesdeTexto() : a partir de una archivo, imprime una cuadrícula
  * de 8x8. */
-void Tablero::leerTableroDesdeTexto()
+void Tablero::leerTableroDesdeTexto(int *apuntador )
 {
 	ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1. 
 	//Archivo Buscado: nivel1.txt
@@ -74,6 +74,8 @@ void Tablero::leerTableroDesdeTexto()
 	int numero[64];
 
 	int *puntero = NULL;
+	
+	apuntador = &numero[0];
 	
 	for (int i = 0 ; i < 64 ; i++) // Ciclo FOR para guardar cada número de la matriz
 		//en un arreglo.
