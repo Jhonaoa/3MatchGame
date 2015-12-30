@@ -3,6 +3,7 @@
  *
  *  Created on: 30/12/2015
  *      Author: Jhoan Sebastián
+ * Como les digo, luego veo como hacerlo entre clases, quería entenderlo primero.
  */
 
 #ifndef TABLERO_H_
@@ -15,13 +16,13 @@ class Tablero {
 public:
 	Tablero();
 	~Tablero();
-	void llenarTablero ();
-	void getTablero();
-	void hacerMatch();
+	void llenarTablero (); // Este metodo lo cree para llenar el tablero con números aleatorios.
+	void getTablero(); // Para mostrar el tablero completo.
+	void hacerMatch(); //Ya el metodo del match
 
 
 private:
-	double miTablero[8][8];
+	double miTablero[8][8]; //Defino la matriz aqui.
 
 
 };
