@@ -15,6 +15,8 @@ class Tablero
         void setTableroInicial(int matriz[F][C]);
 
         void getTableroInicial();
+        
+        void leerMatrizDesdeArchivo ();
 
 
     protected:
