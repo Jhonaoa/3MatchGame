@@ -1,5 +1,6 @@
 #include "Tablero.h"
 #include <cstdlib>
+#include <fstream>
 #include <time.h>
 #include <iostream>
 using namespace std;
