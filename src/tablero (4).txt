@@ -1,0 +1,177 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
+/*
+ * tablero.cc
+ * Copyright (C) 2015 miguel <miguel@miguel-Aspire-E1-470>
+ *
+ * candy_crush-cpp is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * candy_crush-cpp is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "tablero.h"
+#include <iostream>
+ Tablero::Tablero()
+ {
+   tablero2[F][C];
+  F= 8;//inicializo F
+  C =8; //inicializo C
+  opcion;	 //opcion para evaluar casos
+  lugar;	 
+  *puntero ;	//mi variable puntero 
+     //ctor
+ }
+ 
+ Tablero::~Tablero()
+ {
+     //dtor
+}
+ 
+ void Tablero::tableroInicial()
+ {
+ int tablero2[F][C];
+
+	 srand(time(NULL));//semilla
+	 
+ 
+ 
+  for (int filas = 0; filas < F;filas++ )
+
+     {
+	  
+        for (int columnas = 0; columnas< C;columnas++)
+
+        {
+          puntero=&tablero2[filas][columnas];//igualando mi puntero a mi matriz
+			int aleatorio = rand() % 6 +1;//random de numeros despues figuritas :v
+
+            tablero2[filas ][columnas] = aleatorio;//igualando vector con aleatorio
+ 
+           cout<<" "<< tablero2[filas][columnas];//metodo para imprimir mi matriz base
+         }
+         cout <<endl;
+     }
+ cout<<"desea cambiar tres datos de la primera fila"<<endl;
+cout<<"1) si"<<endl;
+cout<<"2) no gracias"<<endl;	
+	cin>>opcion;
+switch(opcion)//creo opciones para el usuario
+	{
+
+	case 1 :
+cout<<"escoja en que lugar va modificar:  "<<endl;
+cout<<"1) izquierda"<<endl;
+cout<<"2) centro"<<endl;
+cout<<"3) derecha"<<endl;		
+cin>>lugar;
+if(lugar == 1)
+	{
+srand(time(NULL));//creo una semilla
+		
+		puntero=&tablero2[0][2];//mi variable puntero apunta a una direccion de mi matriz
+		int aleatorioA = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioA;//se remplaza por numero aleatorio donde apunto mi variable *puntero
+     //______________
+		puntero=&tablero2[0][3];//mi variable puntero apunta a una direccion de mi matriz
+	    int aleatorioB = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioB;//se remplaza por numero aleatorio donde apunto mi variable *puntero
+	 //______________
+		puntero=&tablero2[0][4];//mi variable puntero apunta a una direccion de mi matriz
+		 int aleatorioC = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioC;	//se remplaza por numero aleatorio donde apunto mi variable *puntero
+
+		for (int filas = 0; filas < F;filas++ )
+
+     {
+	  
+        for (int columnas = 0; columnas< C;columnas++)
+
+        {
+          
+           cout<<" "<< tablero2[filas][columnas];//se imprime ya mi matriz modificada
+         }
+         cout <<endl;
+		}
+}
+ else if(lugar == 2)
+{
+srand(time(NULL));//creo una semilla
+		
+		puntero=&tablero2[0][4];//mi variable puntero apunta a una direccion de mi matriz
+		int aleatorioA = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioA;//se remplaza por numero aleatorio donde apunto mi variable *puntero
+     //______________
+		puntero=&tablero2[0][5];//mi variable puntero apunta a una direccion de mi matriz
+	    int aleatorioB = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioB;//se remplaza por numero aleatorio donde apunto mi variable *puntero
+	 //______________
+		puntero=&tablero2[0][6];//mi variable puntero apunta a una direccion de mi matriz
+		 int aleatorioC = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioC;	//se remplaza por numero aleatorio donde apunto mi variable *puntero
+
+		for (int filas = 0; filas < F;filas++ )
+
+     {
+	  
+        for (int columnas = 0; columnas< C;columnas++)
+
+        {
+          
+           cout<<" "<< tablero2[filas][columnas];//se imprime ya mi matriz modificada
+         }
+         cout <<endl;
+		}
+
+}
+
+
+else if (lugar == 3)
+{
+srand(time(NULL));//creo una semilla
+		
+		puntero=&tablero2[0][6];//mi variable puntero apunta a una direccion de mi matriz
+		int aleatorioA = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioA;//se remplaza por numero aleatorio donde apunto mi variable *puntero
+     //______________
+		puntero=&tablero2[0][7];//mi variable puntero apunta a una direccion de mi matriz
+	    int aleatorioB = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioB;//se remplaza por numero aleatorio donde apunto mi variable *puntero
+	 //______________
+		puntero=&tablero2[0][8];//mi variable puntero apunta a una direccion de mi matriz
+		 int aleatorioC = rand() % 6 +1;//creo una random de enteros
+		*puntero = aleatorioC;	//se remplaza por numero aleatorio donde apunto mi variable *puntero
+
+		for (int filas = 0; filas < F;filas++ )
+
+     {
+	  
+        for (int columnas = 0; columnas< C;columnas++)
+
+        {
+          
+           cout<<" "<< tablero2[filas][columnas];//se imprime ya mi matriz modificada
+         }
+         cout <<endl;
+		}
+}
+
+	break;	
+}
+ 
+ }
+
+
+
+
+
+ 
+
+
