@@ -16,6 +16,8 @@ class Tablero
         void setTableroInicial();
 
         void getTableroInicial();
+        
+        void leerMatrizDesdeArchivo (int *apuntador );
 
         void moverseEnTablero();
 
