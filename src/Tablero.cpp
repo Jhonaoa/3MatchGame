@@ -388,6 +388,37 @@ void Tablero::hacerMatch() //3match
 		}
 }
 
+void Tablero::bajarMatriz()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+
+	double *puntero;
+
+	for (filas = 7; filas >= 0; filas--)
+	{
+		for (columnas = 0; columnas < 8; columnas++)
+		{
+			puntero = &miTablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
+			if (*puntero == 0)
+			{
+				int contador = 0;
+				for (int j = 0; j >= 0; j--)
+		{
+					contador++;
+					
+		}
+				for (int i = filas; i > 0; i--)
+				{
+					
+					puntero = &miTablero[i][columnas];
+					*puntero = miTablero[i-1][columnas];
+
+				}
+
+			}
+		}
+	}
+}
 
 
 
