@@ -146,6 +146,131 @@ void Tablero::leerTableroDesdeTexto(int *apuntador )
 
 }
 
+void Tablero::llenarTablero()// Lo creé para poner generar un tablero aleatorio de prueba.
+{
+
+	int filas, columnas;
+	double *puntero;
+
+
+	for (filas = 0; filas < 8; filas++)
+	{
+		for (columnas = 0; columnas < 8; columnas++)
+		{
+			puntero = &miTablero[filas][columnas];
+			*puntero = 1 + rand() % 4;
+		}
+
+	}
+}
+
+
+void Tablero::getTablero() //Imprime el tablero.
+{
+	int filas, columnas;
+	for (filas = 0; filas < 8; filas++)
+		{
+			for (columnas = 0; columnas < 8; columnas++)
+			{
+				cout << miTablero[filas][columnas] << " " ;
+			}
+
+			cout << endl;
+		}
+}
+
+void Tablero::hacerMatch() //3match
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	double *puntero;
+
+	for (filas = 0; filas < 8; filas++)//For externo que recorre las filas.
+		{
+		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+		{
+			puntero = &miTablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
+
+			//Primero el programa comprueba si hay alguna cruz.
+			//           0
+			//          000
+			//           0
+			if(*puntero == miTablero[filas + 1][columnas] and *puntero == miTablero[filas - 1][columnas] and
+			*puntero == miTablero[filas][columnas + 1] and *puntero == miTablero[filas][columnas - 1])
+			//Este if comprueba si las posiciones a la izq, der, arriba, abajo, son iguales a la del lugar donde se encuentra el puntero.
+			{
+				if (columnas == 0 or columnas == 7) // Algunas veces los match horizontales causaban problemas, ya que al hacer columna +1 en
+					// la ultima columna o hacer columna - 1 en la primera columna hacia que saltara de fila, así que tomamos los casos en los que
+					// columnas es 0 (primera columna) o columnas es 7 (ultima columna).
+				{
+					if (miTablero[filas][columnas + 1] != miTablero[filas + 1] [0] and miTablero[filas][columnas - 1] != miTablero[filas - 1] [7])
+						// Comprueba que el valor en la ultima columna no sea igual al primero de la siguiente fila
+						// o que el valor en la primera columna no sea igual al ultimo de la fila anterior.
+						// Si no pasa esto debe hacer el match.
+					{
+						//Muevo el puntero y cambio a 0 las casillas correspondientes.
+						*puntero = 0;
+						puntero = &miTablero[filas][columnas - 1];
+						*puntero = 0;
+						puntero = &miTablero[filas][columnas + 1];
+						*puntero = 0;
+						puntero = &miTablero[filas + 1][columnas];
+						*puntero = 0;
+						puntero = &miTablero[filas - 1][columnas];
+						*puntero = 0;
+					}
+				}
+				else //Si no está en la columna final o en la columna inicial, es porque es un match normal.
+				{
+					*puntero = 0;
+					puntero = &miTablero[filas][columnas - 1];
+					*puntero = 0;
+					puntero = &miTablero[filas][columnas + 1];
+					*puntero = 0;
+					puntero = &miTablero[filas + 1][columnas];
+					*puntero = 0;
+					puntero = &miTablero[filas - 1][columnas];
+					*puntero = 0;
+				}
+
+				}
+
+			//Ahora el programa hace los match verticales
+			if(*puntero == miTablero[filas + 1][columnas] and *puntero == miTablero[filas - 1][columnas])
+			{
+				*puntero = 0;
+				puntero = &miTablero[filas + 1][columnas];
+				*puntero = 0;
+				puntero = &miTablero[filas - 1][columnas];
+				*puntero = 0;
+			}
+
+			// Y por ultimo los match horizontales, aquí se hace lo mismo que en el de la cruz para solucionar el problema de el columna +1 y columna - 1.
+			if(*puntero == miTablero[filas][columnas + 1] and *puntero == miTablero[filas][columnas - 1])
+			{
+				if (columnas == 0 or columnas == 7)
+				{
+					if (miTablero[filas][columnas + 1] != miTablero[filas + 1] [0] and miTablero[filas][columnas - 1] != miTablero[filas - 1] [7])
+					{
+						*puntero = 0;
+						puntero = &miTablero[filas][columnas - 1];
+						*puntero = 0;
+						puntero = &miTablero[filas][columnas + 1];
+						*puntero = 0;
+					}
+				}
+				else
+				{
+					*puntero = 0;
+					puntero = &miTablero[filas][columnas - 1];
+					*puntero = 0;
+					puntero = &miTablero[filas][columnas + 1];
+					*puntero = 0;
+				}
+			}
+		}
+		}
+}
+
 
 
 
