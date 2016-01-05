@@ -16,6 +16,14 @@ int main()
         miTablero.setTableroInicial();
         cout<<endl;
     //miTablero.getTableroInicial();
+    
+    srand (time (NULL));
+	Tablero unTablero;
+	unTablero.llenarTablero();
+	unTablero.getTablero();
+	cout << endl;
+	unTablero.hacerMatch();
+	unTablero.getTablero();
 
 
 
