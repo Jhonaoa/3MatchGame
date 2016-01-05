@@ -11,11 +11,12 @@ int main()
         Tablero miTablero;
 
 
-        miTablero.tableroInicial(8,8);
+        miTablero.setTableroInicial(8,8);
 
-        miTablero.setTableroInicial();
+        miTablero.getTableroInicial();
         cout<<endl;
-    //miTablero.getTableroInicial();
+
+        miTablero.moverseEnTablero();
 
 
 

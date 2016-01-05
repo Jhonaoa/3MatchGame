@@ -8,16 +8,17 @@
 class Tablero
 {
     public:
+
         Tablero();
         ~Tablero();
 
-        void tableroInicial(int filas, int columnas);
-
-        void setTableroInicial();
+        void setTableroInicial(int filas, int columnas);
 
         void getTableroInicial();
-        
+
         void leerMatrizDesdeArchivo (int *apuntador );
+
+        void leerTableroDesdeTexto(int *apuntador );
 
         void moverseEnTablero();
 
@@ -27,12 +28,12 @@ class Tablero
     protected:
     private:
 
-    int tablero[F][C];
-    int fila;
-    int columna;
-    int *pFila;
-    int *Columna;
-    int *matriz;
+        int tablero[F][C];
+        int fila;
+        int columna;
+        int *pFila;
+        int *Columna;
+        int *matriz;
 
 };
 
