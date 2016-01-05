@@ -20,6 +20,10 @@ class Tablero
         void leerMatrizDesdeArchivo (int *apuntador );
 
         void moverseEnTablero();
+        
+        void llenarTablero ();
+        void getTablero();
+        void hacerMatch();
 
 
 
@@ -33,6 +37,7 @@ class Tablero
     int *pFila;
     int *Columna;
     int *matriz;
+    double miTablero[8][8];
 
 };
 
