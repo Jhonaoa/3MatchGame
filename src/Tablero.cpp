@@ -55,18 +55,25 @@ void Tablero::getTableroInicial()
 
     for (i = 0; i < 8; i++)
         {
+            for(int k = 0; k< 8;k++)
+            {
+                cout<<"-----";
+            }
+            cout<<endl;
 
 
             for(j = 0; j< 8; j++)
             {
+
+
                 if (i == fila and j ==columna )
                 {
                     matriz = &tablero[i][j];
-                    cout<<"["<<*matriz<<"]";
+                    cout<<"[ "<<*matriz<<" ]";
                 }else
                 {
                     matriz = &tablero[i][j];
-                    cout<<" "<<*matriz<<" ";
+                    cout<<"  "<<*matriz<<"  ";
                 }
             }
         cout<<endl;
@@ -286,9 +293,10 @@ void Tablero::moverseEnTablero()
                                                     if(fila == 0)//este condicional se usa para evitar que una ficha que
                                                     //está en el borde superior inetnte ser intercambiada en una posición que no existe
                                                     {
+                                                        Tablero::getTableroInicial();
                                                         cout<<"no se puede mover arriba"<<endl;//al oprimir la "w" en el teclado se genera la acción de cambiar
                                                             // la ficha inmediatamente siguiente que está arriba
-                                                        Tablero::getTableroInicial();
+
 
                                                     }else
                                                         {
@@ -348,26 +356,26 @@ void Tablero::moverseEnTablero()
 {
 {
 
-	
+
 	int matriz[8][8];
 	Caja matrizDeCajas[8][8];
 
 	int *puntero =  &matriz[0][0];
 	int variableSwitch = rand() % 3;
-	
+
 	switch (variableSwitch) /*Posibilidades de matriz inicial para el nivel 1 por medio de un switch
 						En todas los casos posibles sea crea un IFSTREAM. pero en cada caso se accede
-						a un archivo .txt diferente.*/
+						a un archivo .txt diferente.
 	{
 		case 0:
-		{ // caso en que numero aleatorio % 3 sea cero 
-			
-			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1. 
+		{ // caso en que numero aleatorio % 3 sea cero
+
+			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1.
 											//Archivo Buscado: nivel1.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 1" ;
-				cout << endl; 
+				cout << endl;
 				exit(1);
 			}
 
@@ -375,27 +383,27 @@ void Tablero::moverseEnTablero()
 			//en un arreglo.
 
 			{
-			
+
 				for (int j = 0 ; j < 8 ; j++)
 				{
 					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.  */
+										la posición (i,j) de la matriz definida.
 				}
-		
+
 			}
 		}
 		break;
-		
+
 		case 1:
 		{
-			//caso en que numero aleatorio % 3 sea 1 
-			
-			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1. 
+			//caso en que numero aleatorio % 3 sea 1
+
+			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-2.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 2" ;
-				cout << endl; 
+				cout << endl;
 				exit(1);
 			}
 
@@ -403,79 +411,79 @@ void Tablero::moverseEnTablero()
 										//en un arreglo.
 
 			{
-				
+
 
 				for (int j = 0 ; j < 8 ; j++)
 				{
 					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.  */
+										la posición (i,j) de la matriz definida.
 				}
-		
+
 			}
 		}
-	
+
 		break;
 
-		case 2: 
+		case 2:
 		{//caso en que numero aleatorio % 3 sea 2:
 
-			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1. 
+			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-3.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 3" ;
-				cout << endl; 
+				cout << endl;
 				exit(1);
 			}
-		
+
 			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
 										//en un arreglo.
 
 			{
-				
+
 
 				for (int j = 0 ; j < 8 ; j++)
 				{
 					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.  */
+										la posición (i,j) de la matriz definida.
 				}
-		
+
 			}
 		}
 		break;
 	}
-	
+
 /*
 	for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
 		//en un arreglo.
 
 	{
-		//nivel1 >> numero[i] ; 
+		//nivel1 >> numero[i] ;
 
 	/* trataba de instanciar las cajas desde aquí, pero me tira error diciendo
-	 * algo como que se intenta hacer conversión de un puntero de caja a una caja 
-	 * de tipo no-escalar -btw no entendí porqué - 
+	 * algo como que se intenta hacer conversión de un puntero de caja a una caja
+	 * de tipo no-escalar -btw no entendí porqué -
 
 		 Caja caja = new Caja();
 
 		vectorDeCajas[i] = caja;
-		
-	
+
+
 
 		for (int j = 0 ; j < 8 ; j++)
 		{
 			nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.  
+										la posición (i,j) de la matriz definida.
 		}
-		
+
 	}
-*/
-			
+
+
 	for (int i = 0 ; i < 8 ; i++)//Ciclo FOR para imprimir las componente del arreglo
 		//numero[] y formar una cuadrícula de números.
 	{
-		
-		
+
+
 		for (int j = 0; j < 8 ; j++)
 		{
 			puntero  = &matriz[i][j]; //puntero apunta a la dirección en memoria de la componente (i.j) de la matriz.
@@ -496,7 +504,7 @@ void Tablero::moverseEnTablero()
 
 } */
 
-void Tablero::llenarTablero()// Lo creé para poner generar un tablero aleatorio de prueba.
+/*void Tablero::llenarTablero()// Lo creé para poner generar un tablero aleatorio de prueba.
 {
 
 	int filas, columnas;
@@ -638,11 +646,11 @@ void Tablero::bajarMatriz()
 				for (int j = 0; j >= 0; j--)
 		{
 					contador++;
-					
+
 		}
 				for (int i = filas; i > 0; i--)
 				{
-					
+
 					puntero = &miTablero[i][columnas];
 					*puntero = miTablero[i-1][columnas];
 
@@ -652,7 +660,7 @@ void Tablero::bajarMatriz()
 		}
 	}
 }
-
+*/
 
 
 

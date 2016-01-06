@@ -9,14 +9,24 @@ int main()
 
 
         Tablero miTablero;
+        Tablero *puntero;
+
+        puntero = &miTablero;
+
+
 
 
         miTablero.setTableroInicial(8,8);
+        (*puntero).getTableroInicial();
 
-        miTablero.getTableroInicial();
+
+        (*puntero).moverseEnTablero();
+
+        //miTablero.getTableroInicial();
         //cout<<endl;
 
-        miTablero.moverseEnTablero();
+
+        //miTablero.moverseEnTablero();
 /*<<<<<<< HEAD
 
 
