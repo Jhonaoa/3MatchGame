@@ -346,63 +346,151 @@ void Tablero::moverseEnTablero()
  * de 8x8. */
 /*void Tablero::leerTableroDesdeTexto(int *apuntador )
 {
-		ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1.
-	//Archivo Buscado: nivel1.txt
+{
 
-	if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
-	{
-		cerr << "ERROR AL ABRIR ARCHIVO" ;
-		cout << endl;
-		exit(1);
-	}
-
-
-
-
-
+	
 	int matriz[8][8];
+	Caja matrizDeCajas[8][8];
 
 	int *puntero =  &matriz[0][0];
+	int variableSwitch = rand() % 3;
+	
+	switch (variableSwitch) /*Posibilidades de matriz inicial para el nivel 1 por medio de un switch
+						En todas los casos posibles sea crea un IFSTREAM. pero en cada caso se accede
+						a un archivo .txt diferente.*/
+	{
+		case 0:
+		{ // caso en que numero aleatorio % 3 sea cero 
+			
+			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1. 
+											//Archivo Buscado: nivel1.txt
+			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
+			{
+				cerr << "ERROR AL ABRIR ARCHIVO 1" ;
+				cout << endl; 
+				exit(1);
+			}
 
+			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
+			//en un arreglo.
 
+			{
+			
+				for (int j = 0 ; j < 8 ; j++)
+				{
+					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
+										la posición (i,j) de la matriz definida.  */
+				}
+		
+			}
+		}
+		break;
+		
+		case 1:
+		{
+			//caso en que numero aleatorio % 3 sea 1 
+			
+			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1. 
+											//Archivo Buscado: nivel1-2.txt
+			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
+			{
+				cerr << "ERROR AL ABRIR ARCHIVO 2" ;
+				cout << endl; 
+				exit(1);
+			}
 
-	for (int i = 0 ; i < 64 ; i++) // Ciclo FOR para guardar cada número de la matriz
+			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
+										//en un arreglo.
+
+			{
+				
+
+				for (int j = 0 ; j < 8 ; j++)
+				{
+					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
+										la posición (i,j) de la matriz definida.  */
+				}
+		
+			}
+		}
+	
+		break;
+
+		case 2: 
+		{//caso en que numero aleatorio % 3 sea 2:
+
+			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1. 
+											//Archivo Buscado: nivel1-3.txt
+			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
+			{
+				cerr << "ERROR AL ABRIR ARCHIVO 3" ;
+				cout << endl; 
+				exit(1);
+			}
+		
+			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
+										//en un arreglo.
+
+			{
+				
+
+				for (int j = 0 ; j < 8 ; j++)
+				{
+					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
+										la posición (i,j) de la matriz definida.  */
+				}
+		
+			}
+		}
+		break;
+	}
+	
+/*
+	for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
 		//en un arreglo.
 
 	{
-		//nivel1 >> numero[i] ;
+		//nivel1 >> numero[i] ; 
 
 	/* trataba de instanciar las cajas desde aquí, pero me tira error diciendo
-	 * algo como que se intenta hacer conversión de un puntero de caja a una caja
-	 * de tipo no-escalar -btw no entendí porqué -
+	 * algo como que se intenta hacer conversión de un puntero de caja a una caja 
+	 * de tipo no-escalar -btw no entendí porqué - 
 
 		 Caja caja = new Caja();
 
 		vectorDeCajas[i] = caja;
+		
+	
 
-	*/
-
-		/*for (int j = 0 ; j < 8 ; j++)
+		for (int j = 0 ; j < 8 ; j++)
 		{
 			nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.
+										la posición (i,j) de la matriz definida.  
 		}
-
+		
 	}
-
+*/
+			
 	for (int i = 0 ; i < 8 ; i++)//Ciclo FOR para imprimir las componente del arreglo
 		//numero[] y formar una cuadrícula de números.
 	{
-		if ( i % 8 == 0 && i != 0) // si la fila es divisible por 8, se imprime un salto de línea.
-			cout << endl;
-
+		
+		
 		for (int j = 0; j < 8 ; j++)
 		{
-			puntero[i][j]  = &matriz[i][j]; //puntero apunta a la dirección en memoria de la componente (i.j) de la matriz.
+			puntero  = &matriz[i][j]; //puntero apunta a la dirección en memoria de la componente (i.j) de la matriz.
+
+			//Caja caja = new Caja();
+			//matrizDeCajas[i][j] = caja ;
 			cout << (*puntero) << " ";  // se imprime lo señalado por el puntero.
 
 		}
+
+		cout << endl;
 	}
+
+
+}
 
 
 
@@ -533,6 +621,37 @@ void Tablero::hacerMatch() //3match
 		}
 }
 
+void Tablero::bajarMatriz()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+
+	double *puntero;
+
+	for (filas = 7; filas >= 0; filas--)
+	{
+		for (columnas = 0; columnas < 8; columnas++)
+		{
+			puntero = &miTablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
+			if (*puntero == 0)
+			{
+				int contador = 0;
+				for (int j = 0; j >= 0; j--)
+		{
+					contador++;
+					
+		}
+				for (int i = filas; i > 0; i--)
+				{
+					
+					puntero = &miTablero[i][columnas];
+					*puntero = miTablero[i-1][columnas];
+
+				}
+
+			}
+		}
+	}
+}
 
 
 
