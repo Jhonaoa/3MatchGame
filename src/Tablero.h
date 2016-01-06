@@ -16,12 +16,14 @@ class Tablero
 
         void getTableroInicial();
 
+        void moverseEnTablero();
+
         void leerMatrizDesdeArchivo (int *apuntador );
 
         void leerTableroDesdeTexto(int *apuntador );
 
-        void moverseEnTablero();
-        
+
+
         void llenarTablero ();
         void getTablero();
         void hacerMatch();
@@ -32,22 +34,18 @@ class Tablero
     protected:
     private:
 
-<<<<<<< HEAD
+
         int tablero[F][C];
         int fila;
         int columna;
-        int *pFila;
-        int *Columna;
+        int aCambiar1;
+        int aCambiar2;
         int *matriz;
-=======
-    int tablero[F][C];
-    int fila;
-    int columna;
-    int *pFila;
-    int *Columna;
-    int *matriz;
-    double miTablero[8][8];
->>>>>>> 02168c7d3795e9171602fa3ed03524de4286426d
+
+
+
+        double miTablero[8][8];
+
 
 };
 

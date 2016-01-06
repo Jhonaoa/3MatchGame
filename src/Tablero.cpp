@@ -32,17 +32,17 @@ void Tablero::setTableroInicial(int filas, int columnas)
 
         for (int i = 0; i < filas;i++ )
 
-    {
-        for (int j = 0; j< columnas;j++)
+            {
+                for (int j = 0; j< columnas;j++)
 
-        {
-            int aleatorio = rand() % filas +1;
+                    {
+                        int aleatorio = rand() % 5 +1;
 
-            tablero[i][j] = aleatorio;
+                        tablero[i][j] = aleatorio;
 
-        }
+                    }
 
-    }
+            }
 
 
 }
@@ -55,6 +55,8 @@ void Tablero::getTableroInicial()
 
     for (i = 0; i < 8; i++)
         {
+
+
             for(j = 0; j< 8; j++)
             {
                 if (i == fila and j ==columna )
@@ -76,16 +78,18 @@ void Tablero::getTableroInicial()
 void Tablero::moverseEnTablero()
 {
     bool repeat = true;
-    while(repeat)
+    while(repeat)//se usa un ciclo while para mantener la interacción con el teclad
+    //activa hasta que se requiera.
         {
 
 
             if (kbhit())//se usa el comando kbhit() para permitir
-                {       // la interacción del teclado durante la ejecución del programa
+                {   // la interacción del teclado durante la ejecución del programa
                     char ch = getch();//se usa el comando getch() para extraer qué tecla que
                         //fue usada y generar una acción mediante un switch.
 
-                    switch (ch)
+                    switch (ch)//se usa un switch case, para separar las distintas interacciones del teclado
+                    // y  así lograr que solo se genere la acción que necesitamos.
                         {
                             case 100:// moverse a la derecha 100 es la posición de la tecla "d"
                                     //en la tabla ASCCI
@@ -190,13 +194,154 @@ void Tablero::moverseEnTablero()
                                         }
 
                             break;
+
+                            case 32://selccionar ficha a mover. 32 es la posición de la tecla
+                            //espacio en la tabla ASSCI
+
+
+                                matriz = &tablero[fila][columna];//se iguala el puntero "matriz" a la posición
+                                //actual del seleccionador "[]" y se almacena el contenido en el
+                                //atributo "aCambiar1"
+                                aCambiar1 = *matriz;//almacena el conteniido del puntero matriz en el
+                                //atributo aCambiar1
+
+                                //declaración de variables auxiliares
+
+                                 bool repetir = true;
+                                 int moverColumnaD = columna + 1;
+                                 int moverColumnaI = columna - 1;
+                                 int moverArriba = fila -1 ;
+                                 int moverAbajo = fila + 1 ;
+
+
+
+                                 while(repetir)//se usa un ciclo while para mantener la interacción con el teclado
+                                        //activa hasta que se requiera.
+                                 {
+
+                                    if (kbhit())//se usa el comando kbhit() para permitir
+                                    // la interacción del teclado durante la ejecución del programa
+                                    {
+                                        char ch2 = getch();//se usa el comando getch() para extraer qué tecla
+                                        //fue usada y generar una acción mediante un switch.
+
+
+                                        switch(ch2)//se usa un switch case, para separar las distintas interacciones del teclado
+                                                    // y  así lograr que solo se genere la acción que necesitamos.
+                                            {
+                                                case 100://al oprimir la "d" en el teclado se genera la acción de cambiar
+                                                // la ficha inmediatamente siguiente que está a la derecha
+                                                    system("cls");
+                                                    if(columna == 7)//este condicional se usa para evitar que una ficha que
+                                                    //está en el borde derecho inetnte ser intercambiada en una posición que no existe
+                                                    {
+                                                        cout<<"no se puede mover a la derecha"<<endl;//devuelve un aviso
+                                                        Tablero::getTableroInicial();//devuelve el tablero otra vez
+
+                                                    }else
+                                                        {
+
+
+                                                            matriz = &tablero[fila][moverColumnaD];//señala el puntero matriz a la posición a la derecha de la actual
+                                                            aCambiar2 = *matriz;//alamacena el contenido de matriz en el atributo "aCambiar2"
+                                                            *matriz = aCambiar1;//cambia el contenido del puntero matriz por el almacenado en aCambiar1
+                                                            matriz = &tablero[fila][columna];//señala el puntero matriz a la posición que fue seleccionada
+
+                                                            *matriz = aCambiar2;//cambia el contenido del puntero matriz por el de aCambiar2
+                                                            Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
+
+                                                            repetir = false;//le da el valor a la variable repetir de false, para que salga del ciclo
+                                                        }
+                                                    break;
+
+
+                                                case 97://izquierda
+                                                    system("cls");
+                                                    if(columna == 0)//este condicional se usa para evitar que una ficha que
+                                                    //está en el borde izquierdo inetnte ser intercambiada en una posición que no existe
+                                                    {
+                                                        cout<<"no se puede mover a la izquierda"<<endl;//al oprimir la "a" en el teclado se genera la acción de cambiar
+                                                            // la ficha inmediatamente siguiente que está a la izquierda
+                                                        Tablero::getTableroInicial();//imprime el tablero otra vez
+
+                                                    }else
+                                                        {
+
+                                                            //el mismo procedimiento del case 100:
+
+
+                                                            matriz = &tablero[fila][moverColumnaI];
+                                                            aCambiar2 = *matriz;
+                                                            *matriz = aCambiar1;
+                                                            matriz = &tablero[fila][columna];
+                                                            *matriz = aCambiar2;
+                                                            Tablero::getTableroInicial();
+
+                                                            repetir = false;
+                                                        }
+                                                    break;
+
+                                                case 119://arriba
+                                                    system("cls");
+                                                    if(fila == 0)//este condicional se usa para evitar que una ficha que
+                                                    //está en el borde superior inetnte ser intercambiada en una posición que no existe
+                                                    {
+                                                        cout<<"no se puede mover arriba"<<endl;//al oprimir la "w" en el teclado se genera la acción de cambiar
+                                                            // la ficha inmediatamente siguiente que está arriba
+                                                        Tablero::getTableroInicial();
+
+                                                    }else
+                                                        {
+                                                            //el mismo procedimiento del case 100:
+
+
+                                                            matriz = &tablero[moverArriba][columna];
+                                                            aCambiar2 = *matriz;
+                                                            *matriz = aCambiar1;
+                                                            matriz = &tablero[fila][columna];
+                                                            *matriz = aCambiar2;
+                                                            Tablero::getTableroInicial();
+
+                                                            repetir = false;
+                                                        }
+                                                    break;
+
+                                                case 115://abajo
+                                                    system("cls");
+                                                    if(fila == 7)//este condicional se usa para evitar que una ficha que
+                                                    //está en el borde inferior inetnte ser intercambiada en una posición que no existe
+                                                    {
+                                                        cout<<"no se puede mover abajo"<<endl;//al oprimir la "s" en el teclado se genera la acción de cambiar
+                                                            // la ficha inmediatamente siguiente que está abajo
+                                                        Tablero::getTableroInicial();//imprime el tablero otra vez
+
+                                                    }else
+                                                        {
+                                                            //el mismo procedimiento del case 100:
+
+
+                                                            matriz = &tablero[moverAbajo][columna];
+                                                            aCambiar2 = *matriz;
+                                                            *matriz = aCambiar1;
+                                                            matriz = &tablero[fila][columna];
+                                                            *matriz = aCambiar2;
+                                                            Tablero::getTableroInicial();
+
+                                                            repetir = false;
+                                                        }
+                                                    break;
+
+
+                                    }
+                                }
+
                         }
                     }
         //Sleep(1000);//disminuye el ritmo con el que los ciclos del bucle rotan
             }
 
+    }
 }
-
 /* tablero::leerTableroDesdeTexto() : a partir de una archivo, imprime una cuadrÃ­cula
  * de 8x8. */
 /*void Tablero::leerTableroDesdeTexto(int *apuntador )

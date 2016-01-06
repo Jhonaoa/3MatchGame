@@ -14,13 +14,15 @@ int main()
         miTablero.setTableroInicial(8,8);
 
         miTablero.getTableroInicial();
-        cout<<endl;
-<<<<<<< HEAD
+        //cout<<endl;
 
         miTablero.moverseEnTablero();
+/*<<<<<<< HEAD
+
+
 =======
     //miTablero.getTableroInicial();
-    
+
     srand (time (NULL));
 	Tablero unTablero;
 	unTablero.llenarTablero();
@@ -28,7 +30,7 @@ int main()
 	cout << endl;
 	unTablero.hacerMatch();
 	unTablero.getTablero();
->>>>>>> 02168c7d3795e9171602fa3ed03524de4286426d
+>>>>>>> 02168c7d3795e9171602fa3ed03524de4286426d*/
 
 
 
