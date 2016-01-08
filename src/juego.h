@@ -22,11 +22,18 @@ public:
 	void setTipo2(int requerido); // cumplir por nivel para finalizarlo.
 	void setTipo3(int requerido); // La cantidad mencionada entra como argumento.
 	void setTipo4(int requerido);
-	void disminuirRequerimientoTodoTipo(int tipo); 
+	void setNivel(int lv);
+	void disminuirRequerimientoTodoTipo(int tipo); 
 	void disminuirRequerimientoTipo1(); // Cada uno de estos cuatro
 	void disminuirRequerimientoTipo2(); // reducen en una unidad, los requerimientos
 	void disminuirRequerimientoTipo3(); // de algún tipo, para terminar el nivel.
 	void disminuirRequerimientoTipo4();
+
+	int getNivel();
+	int getRequerimientoTipo1();
+	int getRequerimientoTipo2();
+	int getRequerimientoTipo3();
+	int getRequerimientoTipo4();
 	
 
 	
