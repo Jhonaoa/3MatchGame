@@ -41,7 +41,13 @@ void Juego::setTipo4(int requerido)
 }
 /* void Juego::disminuirRequerimientoTipo1(): Disminuye en una unidad el valor del atributo
  * requerimientoTipo1 */
-void Juego::disminuirRequerimientoTipo1()
+ 
+ void Juego::setNivel(int lv)
+{
+	nivel = lv;
+}
+
+void Juego::disminuirRequerimientoTipo1()
 {
 	requerimientoTipo1--;
 }
