@@ -677,7 +677,94 @@ void Tablero::bajarMatriz()
 }
 */
 
+/*
 
+void Tablero::cambio()
+{
+	int filas,columnas;
+    double  *puntero; // de nuevo el puntero
+	puntero = miTablero[0];
+	int aleatorios;
+
+	for (filas = 0; filas < 1; filas++)
+		{
+		
+			for (columnas = 0; columnas < 8; columnas++)
+			{
+        puntero = &miTablero[0][columnas];
+				if(*puntero==0)
+				{
+                  
+				
+					//aleatorios = rand()%4 +1;
+					//*puntero = aleatorios;
+					int aleatorioB;
+					aleatorioB = rand()%4+1;
+					*puntero++ = aleatorioB--;
+				}
+				else
+				{
+				}
+
+			
+			}
+		
+	}
+
+	
+}
+
+
+void Tablero::contador()
+{
+int filas,columnas;
+	double *puntero; // de nuevo el puntero
+	
+	puntero = miTablero[0];
+	int aleatorios;
+
+	for (filas = 0; filas < 8; filas++)
+		{
+		
+			for (columnas = 0; columnas < 8; columnas++)
+			{
+        puntero = &miTablero[filas][columnas];
+if(*puntero == 1)
+				{
+uno = uno +1;
+	
+}
+
+if(*puntero == 2)
+				{
+dos = dos +1;
+	
+}
+
+if(*puntero == 3)
+				{
+tres = tres +1;
+	
+}
+
+if(*puntero == 4)
+				{
+cuatro = cuatro +1;
+	
+}
+
+
+				
+			}
+	}
+cout<<"hay "<<uno<<" numero uno"<<endl;
+cout<<"hay "<<dos <<" numero dos"<<endl;
+cout<<"hay "<<tres<<" numero tres"<<endl;
+cout<<"hay "<<cuatro<<" numero cuatro"<<endl;
+
+}
+
+*/
 
 
 
