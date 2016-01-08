@@ -27,6 +27,8 @@ class Tablero
         void llenarTablero ();
         void getTablero();
         void hacerMatch();
+        void bajarMatriz();
+	bool ceroAbajo ();
 
 
 
