@@ -14,6 +14,7 @@ Tablero::Tablero()
     tablero[F][C];
     fila = 0;
     columna = 0;
+    
 
 
     //ctor
@@ -686,18 +687,18 @@ void Tablero::cambio()
 	puntero = miTablero[0];
 	int aleatorios;
 
-	for (filas = 0; filas < 1; filas++)
+	for (filas = 0; filas < 1; filas++)//creo un ciclo for para que me recorra solo la primera linea de la matriz
 		{
 		
 			for (columnas = 0; columnas < 8; columnas++)
 			{
-        puntero = &miTablero[0][columnas];
-				if(*puntero==0)
+        puntero = &miTablero[0][columnas];//amorro el puntero a la cordenada la cual encuentre el cero
+				if(*puntero==0)//si puntero es igual a cero
 				{
                   
 				
-					//aleatorios = rand()%4 +1;
-					//*puntero = aleatorios;
+					//aleatorios = rand()%4 +1;//crea un numero aleatorio
+					//*puntero = aleatorios;//se iguala puntero con la variable aleatorio
 					int aleatorioB;
 					aleatorioB = rand()%4+1;
 					*puntero++ = aleatorioB--;
@@ -729,7 +730,8 @@ int filas,columnas;
 			for (columnas = 0; columnas < 8; columnas++)
 			{
         puntero = &miTablero[filas][columnas];
-if(*puntero == 1)
+        //se crean las variables en el contructor : uno, dos , tres y cuatro
+if(*puntero == 1)// con este if se evaluan cuantas veces se repite el numero en la matriz
 				{
 uno = uno +1;
 	
@@ -758,7 +760,7 @@ cuatro = cuatro +1;
 			}
 	}
 cout<<"hay "<<uno<<" numero uno"<<endl;
-cout<<"hay "<<dos <<" numero dos"<<endl;
+cout<<"hay "<<dos <<" numero dos"<<endl;  //con este metodo se imprime en pantalla cuantas veces se repite cada numero (ficha)
 cout<<"hay "<<tres<<" numero tres"<<endl;
 cout<<"hay "<<cuatro<<" numero cuatro"<<endl;
 
