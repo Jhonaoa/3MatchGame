@@ -1,4 +1,4 @@
-#include "Tablero.h"
+#include "tablero.h"
 #include <cstdlib>
 #include <fstream>
 #include <time.h>
@@ -14,6 +14,7 @@ Tablero::Tablero()
     tablero[F][C];
     fila = 0;
     columna = 0;
+    
 
 
     //ctor
@@ -352,24 +353,23 @@ void Tablero::moverseEnTablero()
 }
 /* tablero::leerTableroDesdeTexto() : a partir de una archivo, imprime una cuadrÃ­cula
  * de 8x8. */
-/*void Tablero::leerTableroDesdeTexto(int *apuntador )
+void Tablero::leerTableroDesdeTexto(Juego &game )
 {
-{
-
-
-	int matriz[8][8];
-	Caja matrizDeCajas[8][8];
-
-	int *puntero =  &matriz[0][0];
+	Juego *punteroJuego = &game;
+	
+	int *puntero =  &miTablero[0][0];
+	
 	int variableSwitch = rand() % 3;
+
+	double aux = 0; // DOUBLE porque maneja unidades de tiempo en milisegundos.
+	//double *punteroAux = &aux;  //DOUBLE porque apunta unidades de tiempo en milisegundos.
 
 	switch (variableSwitch) /*Posibilidades de matriz inicial para el nivel 1 por medio de un switch
 						En todas los casos posibles sea crea un IFSTREAM. pero en cada caso se accede
-						a un archivo .txt diferente.
+						a un archivo .txt diferente. */
 	{
 		case 0:
 		{ // caso en que numero aleatorio % 3 sea cero
-
 			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1.
 											//Archivo Buscado: nivel1.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
@@ -379,25 +379,44 @@ void Tablero::moverseEnTablero()
 				exit(1);
 			}
 
+			nivel1 >> aux;
+			(*punteroJuego).setNivel(aux);
+
+			//nivel1 >> aux; 
+			//(*punteroJuego).setTime(aux);
+
+			nivel1 >> aux ; 
+			(*punteroJuego).setTipo1(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo2(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo3(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo4(aux);
+
+			//nivel1 >> aux; 
+			//(*punteroJuego).setTipoTortuga(aux);
+			
 			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
 			//en un arreglo.
-
 			{
-
 				for (int j = 0 ; j < 8 ; j++)
 				{
-					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.
+				
+					
+					nivel1 >> miTablero[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
+										la posición (i,j) de la matriz definida.*/
 				}
-
 			}
 		}
 		break;
-
+			
 		case 1:
 		{
 			//caso en que numero aleatorio % 3 sea 1
-
 			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-2.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
@@ -407,26 +426,41 @@ void Tablero::moverseEnTablero()
 				exit(1);
 			}
 
+			nivel1 >> aux;
+			(*punteroJuego).setNivel(aux);
+
+			//nivel1 >> aux; 
+			//(*punteroJuego).setTime(aux);
+
+			nivel1 >> aux ; 
+			(*punteroJuego).setTipo1(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo2(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo3(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo4(aux);
+
+			//nivel1 >> aux; 
+			//(*punteroJuego).setTipoTortuga(aux);
+			
 			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
 										//en un arreglo.
-
 			{
-
-
 				for (int j = 0 ; j < 8 ; j++)
 				{
-					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.
+					nivel1 >> miTablero[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
+										la posición (i,j) de la matriz definida.*/
 				}
-
 			}
 		}
-
 		break;
-
+			
 		case 2:
 		{//caso en que numero aleatorio % 3 sea 2:
-
 			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-3.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
@@ -436,81 +470,45 @@ void Tablero::moverseEnTablero()
 				exit(1);
 			}
 
+			nivel1 >> aux;
+			(*punteroJuego).setNivel(aux);
+
+			//nivel1 >> aux; 
+			//(*punteroJuego).setTime(aux);
+
+			nivel1 >> aux ; 
+			(*punteroJuego).setTipo1(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo2(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo3(aux);
+
+			nivel1 >> aux; 
+			(*punteroJuego).setTipo4(aux);
+
+			//nivel1 >> aux; 
+			//(*punteroJuego).setTipoTortuga(aux);
+			
 			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
 										//en un arreglo.
-
 			{
-
-
 				for (int j = 0 ; j < 8 ; j++)
 				{
-					nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.
+					nivel1 >> miTablero[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
+										la posición (i,j) de la matriz definida.*/
 				}
-
 			}
 		}
 		break;
 	}
-
-/*
-	for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
-		//en un arreglo.
-
-	{
-		//nivel1 >> numero[i] ;
-
-	/* trataba de instanciar las cajas desde aquí, pero me tira error diciendo
-	 * algo como que se intenta hacer conversión de un puntero de caja a una caja
-	 * de tipo no-escalar -btw no entendí porqué -
-
-		 Caja caja = new Caja();
-
-		vectorDeCajas[i] = caja;
-
-
-
-		for (int j = 0 ; j < 8 ; j++)
-		{
-			nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.
-		}
-
-	}
-
-
-	for (int i = 0 ; i < 8 ; i++)//Ciclo FOR para imprimir las componente del arreglo
-		//numero[] y formar una cuadrícula de números.
-	{
-
-
-		for (int j = 0; j < 8 ; j++)
-		{
-			puntero  = &matriz[i][j]; //puntero apunta a la dirección en memoria de la componente (i.j) de la matriz.
-
-			//Caja caja = new Caja();
-			//matrizDeCajas[i][j] = caja ;
-			cout << (*puntero) << " ";  // se imprime lo señalado por el puntero.
-
-		}
-
-		cout << endl;
-	}
-
-
-}
-
-
-
-} */
+} 
 
 /*void Tablero::llenarTablero()// Lo creé para poner generar un tablero aleatorio de prueba.
 {
-
 	int filas, columnas;
 	double *puntero;
-
-
 	for (filas = 0; filas < 8; filas++)
 	{
 		for (columnas = 0; columnas < 8; columnas++)
@@ -518,7 +516,6 @@ void Tablero::moverseEnTablero()
 			puntero = &miTablero[filas][columnas];
 			*puntero = 1 + rand() % 4;
 		}
-
 	}
 }
 
@@ -629,40 +626,271 @@ void Tablero::hacerMatch() //3match
 		}
 }
 
+bool Tablero::ceroAbajo()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	double *puntero;
+
+	for (filas = 0; filas < 7; filas++)//For externo que recorre las filas.
+	{
+		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+		{
+			puntero = &miTablero[filas][columnas];
+			if(*puntero > 0 and miTablero[filas + 1][columnas] == 0)
+			   {
+				   return true;
+			   }
+
+
+		   }
+	}
+	return false;
+}
+
+
+
 void Tablero::bajarMatriz()
 {
 	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
-
 	double *puntero;
-
-	for (filas = 7; filas >= 0; filas--)
+	while (ceroAbajo())
 	{
-		for (columnas = 0; columnas < 8; columnas++)
+		for (filas = 0; filas < 7; filas++)//For externo que recorre las filas
 		{
-			puntero = &miTablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
-			if (*puntero == 0)
+			for (columnas = 0; columnas < 8; columnas++) //for interno para las columna
 			{
-				int contador = 0;
-				for (int j = 0; j >= 0; j--)
-		{
-					contador++;
-
-		}
-				for (int i = filas; i > 0; i--)
+				puntero = &miTablero[filas][columnas];
+				if(miTablero[filas + 1][columnas] == 0)
 				{
-
-					puntero = &miTablero[i][columnas];
-					*puntero = miTablero[i-1][columnas];
+					int aux;
+					aux = *puntero;
+					*puntero = 0;
+					puntero = &miTablero[filas + 1][columnas];
+					*puntero = aux;
 
 				}
-
 			}
 		}
 	}
 }
+
+void Tablero::llenarPrimeraColumna()
+{
+	int columnas;
+	double *puntero;
+	for (columnas = 0; columnas < 8; columnas++)
+	{
+		puntero = &miTablero[0][columnas];
+		if(*puntero == 0)
+		*puntero = 1 + rand() % 4;
+	}
+
+}
+
+bool Tablero::hayCero()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+		double *puntero;
+
+		for (filas = 0; filas < 7; filas++)//For externo que recorre las filas.
+		{
+			for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+			{
+				puntero = &miTablero[filas][columnas];
+				if(*puntero == 0)
+				   {
+					   return true;
+				   }
+
+
+			   }
+		}
+		return false;
+
+
+}
+
+void Tablero::rellenarMatriz()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+		double *puntero;
+		while (hayCero())
+		{
+			bajarMatriz();
+			llenarPrimeraColumna();
+		}
+
+}
+
+bool Tablero::hayMatch()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+		double *puntero;
+
+		for (filas = 0; filas < 8; filas++)//For externo que recorre las filas.
+			{
+			for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+			{
+				puntero = &miTablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
+				if(*puntero == miTablero[filas + 1][columnas] and *puntero == miTablero[filas - 1][columnas])
+							{
+								return true;
+							}
+
+							// Y por ultimo los match horizontales, aquí se hace lo mismo que en el de la cruz para solucionar el problema de el columna +1 y columna - 1.
+							if(*puntero == miTablero[filas][columnas + 1] and *puntero == miTablero[filas][columnas - 1])
+							{
+								if (columnas == 0 or columnas == 7)
+								{
+									if (miTablero[filas][columnas + 1] != miTablero[filas + 1] [0] and miTablero[filas][columnas - 1] != miTablero[filas - 1] [7])
+									{
+										return true;
+									}
+								}
+								else
+								{
+									return true;
+								}
+							}
+			}
+			}
+		return false;
+
+}
+
+void Tablero::matchTotal()
+{
+	while (hayMatch())
+	{
+		hacerMatch();
+		rellenarMatriz();
+	}
+
+}
+*/
+
+/*
+
+void Tablero::cambio()
+{
+	int filas,columnas;
+    double  *puntero; // de nuevo el puntero
+	puntero = miTablero[0];
+	int aleatorios;
+
+	for (filas = 0; filas < 1; filas++)//creo un ciclo for para que me recorra solo la primera linea de la matriz
+		{
+		
+			for (columnas = 0; columnas < 8; columnas++)
+			{
+        puntero = &miTablero[0][columnas];//amorro el puntero a la cordenada la cual encuentre el cero
+				if(*puntero==0)//si puntero es igual a cero
+				{
+                  
+				
+					//aleatorios = rand()%4 +1;//crea un numero aleatorio
+					//*puntero = aleatorios;//se iguala puntero con la variable aleatorio
+					int aleatorioB;
+					aleatorioB = rand()%4+1;
+					*puntero++ = aleatorioB--;
+				}
+				else
+				{
+				}
+
+			
+			}
+		
+	}
+
+	
+}
+
+
+void Tablero::contador()
+{
+int filas,columnas;
+	double *puntero; // de nuevo el puntero
+	
+	puntero = miTablero[0];
+	int aleatorios;
+
+	for (filas = 0; filas < 8; filas++)
+		{
+		
+			for (columnas = 0; columnas < 8; columnas++)
+			{
+        puntero = &miTablero[filas][columnas];
+        //se crean las variables en el contructor : uno, dos , tres y cuatro
+if(*puntero == 1)// con este if se evaluan cuantas veces se repite el numero en la matriz
+				{
+uno = uno +1;
+	
+}
+
+if(*puntero == 2)
+				{
+dos = dos +1;
+	
+}
+
+if(*puntero == 3)
+				{
+tres = tres +1;
+	
+}
+
+if(*puntero == 4)
+				{
+cuatro = cuatro +1;
+	
+}
+
+
+				
+			}
+	}
+cout<<"hay "<<uno<<" numero uno"<<endl;
+cout<<"hay "<<dos <<" numero dos"<<endl;  //con este metodo se imprime en pantalla cuantas veces se repite cada numero (ficha)
+cout<<"hay "<<tres<<" numero tres"<<endl;
+cout<<"hay "<<cuatro<<" numero cuatro"<<endl;
+
+}
+
 */
 
 
+void Tablero::guardarTableroEnArchivo(Juego &juego) //entra la dirección en memoria de juego
+{
+	 Juego *punteroJuego = &juego;
 
+	ofstream datosGuardados ("Guardado.txt"); 
 
+	datosGuardados <<  (*punteroJuego).getNivel() << "\n" ; 
 
+	// datosGuardados << (*punteroJuego).getTiempo() << "\n" ;
+
+	datosGuardados << (*punteroJuego).getRequerimientoTipo1() << "\n" ;
+
+	datosGuardados << (*punteroJuego).getRequerimientoTipo2() << "\n" ;
+
+	datosGuardados << (*punteroJuego).getRequerimientoTipo3() << "\n" ;
+
+	datosGuardados << (*punteroJuego).getRequerimientoTipo4() << "\n" ;
+
+	//datosGuardados << (punteroJuego).getRequerimientoTortuga() << "\n" ;
+
+	for (int i = 0; i < 8 ; i++)
+	{
+		for (int j = 0 ; j < 8 ; j++)
+		{
+				
+			datosGuardados << miTablero[i][j] << " ";
+			
+		}
+
+		datosGuardados << "\n" ;
+	}
+	
+
+}

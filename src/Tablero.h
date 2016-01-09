@@ -20,14 +20,20 @@ class Tablero
 
         void leerMatrizDesdeArchivo (int *apuntador );
 
-        void leerTableroDesdeTexto(int *apuntador );
+        
+        void leerTableroDesdeTexto(Juego &game);
+	void guardarTableroEnArchivo(Juego &juego);
 
-
-
-        void llenarTablero ();
-        void getTablero();
-        void hacerMatch();
-
+         void llenarTablero ();
+	 void getTablero();
+	 void hacerMatch();
+	 void bajarMatriz();
+	 bool ceroAbajo ();
+	 void llenarPrimeraColumna();
+	 bool hayCero();
+	 void rellenarMatriz();
+	 bool hayMatch();
+	 void matchTotal();
 
 
 
