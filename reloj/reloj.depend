@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1448132356 source:c:\users\user\desktop\reloj\main.cpp
+	<stdio.h>
+	<conio.h>
+	<windows.h>
+
