@@ -417,7 +417,7 @@ void Tablero::leerTableroDesdeTexto(Juego &game )
 		case 1:
 		{
 			//caso en que numero aleatorio % 3 sea 1
-			ifstream nivel1 ("nivel1.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
+			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-2.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
 			{
@@ -461,7 +461,7 @@ void Tablero::leerTableroDesdeTexto(Juego &game )
 			
 		case 2:
 		{//caso en que numero aleatorio % 3 sea 2:
-			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
+			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-3.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
 			{
