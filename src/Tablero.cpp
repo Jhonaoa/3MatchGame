@@ -507,11 +507,8 @@ void Tablero::leerTableroDesdeTexto(Juego &game )
 
 /*void Tablero::llenarTablero()// Lo creé para poner generar un tablero aleatorio de prueba.
 {
-
 	int filas, columnas;
 	double *puntero;
-
-
 	for (filas = 0; filas < 8; filas++)
 	{
 		for (columnas = 0; columnas < 8; columnas++)
@@ -519,10 +516,9 @@ void Tablero::leerTableroDesdeTexto(Juego &game )
 			puntero = &miTablero[filas][columnas];
 			*puntero = 1 + rand() % 4;
 		}
-
 	}
 }
-*/
+
 
 void Tablero::getTablero() //Imprime el tablero.
 {
@@ -634,7 +630,7 @@ bool Tablero::ceroAbajo()
 {
 	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
 	double *puntero;
-	
+
 	for (filas = 0; filas < 7; filas++)//For externo que recorre las filas.
 	{
 		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
@@ -644,10 +640,11 @@ bool Tablero::ceroAbajo()
 			   {
 				   return true;
 			   }
-			
-				   
+
+
 		   }
 	}
+	return false;
 }
 
 
@@ -656,7 +653,7 @@ void Tablero::bajarMatriz()
 {
 	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
 	double *puntero;
-	while (ceroAbajo ())
+	while (ceroAbajo())
 	{
 		for (filas = 0; filas < 7; filas++)//For externo que recorre las filas
 		{
@@ -670,11 +667,105 @@ void Tablero::bajarMatriz()
 					*puntero = 0;
 					puntero = &miTablero[filas + 1][columnas];
 					*puntero = aux;
-					
+
 				}
 			}
 		}
 	}
+}
+
+void Tablero::llenarPrimeraColumna()
+{
+	int columnas;
+	double *puntero;
+	for (columnas = 0; columnas < 8; columnas++)
+	{
+		puntero = &miTablero[0][columnas];
+		if(*puntero == 0)
+		*puntero = 1 + rand() % 4;
+	}
+
+}
+
+bool Tablero::hayCero()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+		double *puntero;
+
+		for (filas = 0; filas < 7; filas++)//For externo que recorre las filas.
+		{
+			for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+			{
+				puntero = &miTablero[filas][columnas];
+				if(*puntero == 0)
+				   {
+					   return true;
+				   }
+
+
+			   }
+		}
+		return false;
+
+
+}
+
+void Tablero::rellenarMatriz()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+		double *puntero;
+		while (hayCero())
+		{
+			bajarMatriz();
+			llenarPrimeraColumna();
+		}
+
+}
+
+bool Tablero::hayMatch()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+		double *puntero;
+
+		for (filas = 0; filas < 8; filas++)//For externo que recorre las filas.
+			{
+			for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+			{
+				puntero = &miTablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
+				if(*puntero == miTablero[filas + 1][columnas] and *puntero == miTablero[filas - 1][columnas])
+							{
+								return true;
+							}
+
+							// Y por ultimo los match horizontales, aquí se hace lo mismo que en el de la cruz para solucionar el problema de el columna +1 y columna - 1.
+							if(*puntero == miTablero[filas][columnas + 1] and *puntero == miTablero[filas][columnas - 1])
+							{
+								if (columnas == 0 or columnas == 7)
+								{
+									if (miTablero[filas][columnas + 1] != miTablero[filas + 1] [0] and miTablero[filas][columnas - 1] != miTablero[filas - 1] [7])
+									{
+										return true;
+									}
+								}
+								else
+								{
+									return true;
+								}
+							}
+			}
+			}
+		return false;
+
+}
+
+void Tablero::matchTotal()
+{
+	while (hayMatch())
+	{
+		hacerMatch();
+		rellenarMatriz();
+	}
+
 }
 */
 
