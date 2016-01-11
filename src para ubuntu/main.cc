@@ -59,13 +59,20 @@ int main()
 =======
     //miTablero.getTableroInicial();
 
-    srand (time (NULL));
-	Tablero unTablero;
-	unTablero.llenarTablero();
-	unTablero.getTablero();
-	cout << endl;
-	unTablero.hacerMatch();
-	unTablero.getTablero();
+//Pruebas match.
+   srand (time (NULL));
+		Tablero unTablero;
+		unTablero.llenarTablero();
+		unTablero.getTablero();
+		cout << endl;
+		unTablero.hacerMatch(); //Puse este solo para visualizar donde se hacian los match. pero no es necesario ya.
+		unTablero.getTablero();
+		cout << endl;
+		unTablero.bajarMatriz();
+		unTablero.getTablero();
+		cout << endl;
+		unTablero.matchTotal();
+		unTablero.getTablero();
 >>>>>>> 02168c7d3795e9171602fa3ed03524de4286426d*/
 
 
