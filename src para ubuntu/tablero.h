@@ -45,10 +45,20 @@ class Tablero
 		int kbhit(void);
 
 
-
+//metodos match
         void llenarTablero ();
-        void getTablero();
-        void hacerMatch();
+	 void getTablero();
+	 void matchCruz();
+	 void matchVertical();
+	 void matchHorizontal();
+	 void hacerMatch();
+	 void bajarMatriz();
+	 bool ceroAbajo ();
+	 void llenarPrimeraColumna();
+	 bool hayCero();
+	 void rellenarMatriz();
+	 bool hayMatch();
+	 void matchTotal();
 
 
 
@@ -63,6 +73,9 @@ class Tablero
         int aCambiar1;
         int aCambiar2;
         int *matriz;
+        
+        //Tablero prueba match.
+        double **miTablero;
 
 
 
