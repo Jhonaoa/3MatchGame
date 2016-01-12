@@ -57,21 +57,21 @@ void Tablero::getTableroInicial()
     for (i = 0; i < 8; i++)
         {
             for(int k = 0; k< 8;k++)
-            {
-                cout<<"-----";
-            }
-            cout<<endl;
+    		{
+                	cout<<"-----";
+            	}
+		 cout<<endl;
 
 
             for(j = 0; j< 8; j++)
-            {
+            	{
 
 
-                if (i == fila and j ==columna )
-                {
-                    matriz = &tablero[i][j];
-                    cout<<"[ "<<*matriz<<" ]";
-                }else
+        	if (i == fila and j ==columna )
+		{
+            		matriz = &tablero[i][j];
+        		 cout<<"[ "<<*matriz<<" ]";
+        	}else
                 {
                     matriz = &tablero[i][j];
                     cout<<"  "<<*matriz<<"  ";

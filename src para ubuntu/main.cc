@@ -42,8 +42,46 @@ int main()
 
 		
 		(*puntero).moverseEnTablero();
+<<<<<<< HEAD
 		
 	
+=======
+		/*(*puntero).hacerMatch();
+		cout<<endl;
+		(*puntero).getTableroInicial();
+		cout<<endl;
+
+
+        (*puntero).moverseEnTablero();
+
+        //miTablero.getTableroInicial();
+        //cout<<endl;
+
+
+        //miTablero.moverseEnTablero();
+/*<<<<<<< HEAD
+
+
+=======
+    //miTablero.getTableroInicial();
+
+//Pruebas match.
+   srand (time (NULL));
+		Tablero unTablero;
+		unTablero.llenarTablero();
+		unTablero.getTablero();
+		cout << endl;
+		unTablero.hacerMatch(); //Puse este solo para visualizar donde se hacian los match. pero no es necesario ya.
+		unTablero.getTablero();
+		cout << endl;
+		unTablero.bajarMatriz();
+		unTablero.getTablero();
+		cout << endl;
+		unTablero.matchTotal();
+		unTablero.getTablero();
+>>>>>>> 02168c7d3795e9171602fa3ed03524de4286426d*/
+
+>>>>>>> 7dd4c5057659c9b54852d29031b7dc439b59ac7f
 
 
     return 0;
