@@ -19,7 +19,8 @@
 
  #include <iostream>
 #include "tablero.h"
-#include "tablero.cc"
+#include "caja.h"
+
 
 
 using namespace std;
@@ -33,17 +34,17 @@ int main()
 
         puntero = &miTablero;
 
+		(*puntero).leerTableroDesdeTexto ();
 
+	
 
-
-   		(*puntero).leerTableroDesdeTexto();
-        (*puntero).getTableroInicial();
-		cout<<endl;
+		(*puntero).getTableroInicial();
 
 		
 		(*puntero).moverseEnTablero();
-		
+
 	
+
 
 
     return 0;

@@ -17,23 +17,19 @@
 
 
 #include "tablero.h"
-#include <cstdlib>
-#include <fstream>
-#include <time.h>
-#include <iostream>
-#include <termios.h>
-#include <unistd.h>
-#include <fcntl.h>
-//#include<windows.h>
-#include<stdio.h>
-//#include<conio.h>
-using namespace std;
+
 
 
 Tablero::Tablero()
 {
-    tablero[F][C];
-    fila = 0;
+    tablero = new int* [F];
+
+	for(int i = 0; i < F;i++ )
+	{
+		tablero[i] = new int[C];
+	}
+
+	fila = 0;
     columna = 0;
 
 
@@ -42,29 +38,23 @@ Tablero::Tablero()
 
 Tablero::~Tablero()
 {
-    //dtor
+   /* for(int i = 0 ; i<F;i++)
+	{
+
+		for(int j = 0; j<C; j++)
+		{
+
+			delete [] tabla[i][j];
+		}
+	}
+
+	delete [] tabla;*///dtor
 }
 
-/*void Tablero::setTableroInicial(int filas, int columnas)
+/*void Tablero::setTableroInicial()
 {
 
-        srand(time(NULL));
-
-
-        for (int i = 0; i < filas;i++ )
-
-            {
-                for (int j = 0; j< columnas;j++)
-
-                    {
-                        int aleatorio = rand() % 5 +1;
-
-                        tablero[i][j] = aleatorio;
-
-                    }
-
-            }
-
+      
 
 }*/
 
@@ -89,17 +79,23 @@ void Tablero::getTableroInicial()
 
                 if (i == fila and j ==columna )
                 {
-                    matriz = &tablero[i][j];
-                    cout<<"[ "<<*matriz<<" ]";
+                    cout<<"[ "<<tablero[i][j]<<" ]";
                 }else
                 {
-                    matriz = &tablero[i][j];
-                    cout<<"  "<<*matriz<<"  ";
+
+					cout<<"  "<<tablero[i][j]<<"  ";
                 }
             }
         cout<<endl;
         cout<<endl;
         }
+	/*for (int i = 0; i<F; i++)
+	{
+		delete[] tablero[i];
+	}
+
+	delete[] tablero;*/
+	
 }
 
 
@@ -302,6 +298,27 @@ void Tablero::moverseEnTablero()
 
                                                             *matriz = aCambiar2;//cambia el contenido del puntero matriz por el de aCambiar2
                                                             Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
+															
+															Tablero::hayMatch();
+
+															
+
+															if (Tablero::hayMatch()==false)
+															{
+																sleep(1);
+																system("clear");
+																
+                                                        		matriz = &tablero[fila][columna];//señala el puntero matriz a la posición a la derecha de la actual
+                                                        		aCambiar2 = *matriz;//alamacena el contenido de matriz en el atributo "aCambiar2"
+                                                        		*matriz = aCambiar1;//cambia el contenido del puntero matriz por el almacenado en aCambiar1
+                                                        		matriz = &tablero[fila][moverColumnaD];//señala el puntero matriz a la posición que fue seleccionada
+
+                                                        		*matriz = aCambiar2;//cambia el contenido del puntero matriz por el de aCambiar2
+                                                        		Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
+														
+																	
+															}else					
+																Tablero::matchTotal();
 
                                                             repetir = false;//le da el valor a la variable repetir de false, para que salga del ciclo
                                                         }
@@ -329,8 +346,26 @@ void Tablero::moverseEnTablero()
                                                             matriz = &tablero[fila][columna];
                                                             *matriz = aCambiar2;
                                                             Tablero::getTableroInicial();
+															
 
-                                                            repetir = false;
+															Tablero::hayMatch();
+
+															
+															if (Tablero::hayMatch()==false)
+															{
+																sleep(1);
+																system("clear");
+                                                        		matriz = &tablero[fila][columna];
+                                                        		aCambiar2 = *matriz;
+                                                        		*matriz = aCambiar1;
+                                                        		matriz = &tablero[fila][moverColumnaI];
+                                                        		*matriz = aCambiar2;
+                                                        		Tablero::getTableroInicial();
+																	
+															}else					
+																Tablero::matchTotal();
+
+															repetir = false;
                                                         }
                                                     break;
 
@@ -356,6 +391,25 @@ void Tablero::moverseEnTablero()
                                                             matriz = &tablero[fila][columna];
                                                             *matriz = aCambiar2;
                                                             Tablero::getTableroInicial();
+															
+
+															Tablero::hayMatch();
+															
+
+															
+															if (Tablero::hayMatch()==false)
+															{
+																sleep(1);
+																system("clear");
+                                                        		matriz = &tablero[fila][columna];
+                                                        		aCambiar2 = *matriz;
+                                                        		*matriz = aCambiar1;
+                                                        		matriz = &tablero[moverArriba][columna];
+                                                        		*matriz = aCambiar2;
+                                                        		Tablero::getTableroInicial();
+																	
+															}else					
+																Tablero::matchTotal();
 
                                                             repetir = false;
                                                         }
@@ -381,6 +435,26 @@ void Tablero::moverseEnTablero()
                                                             matriz = &tablero[fila][columna];
                                                             *matriz = aCambiar2;
                                                             Tablero::getTableroInicial();
+															
+
+															
+															Tablero::hayMatch();
+															
+
+															
+															if (Tablero::hayMatch()==false)
+															{
+																sleep(1);
+																system("clear");
+                                                        		matriz = &tablero[fila][columna];
+                                                        		aCambiar2 = *matriz;
+                                                        		*matriz = aCambiar1;
+                                                        		matriz = &tablero[moverAbajo][columna];
+                                                        		*matriz = aCambiar2;
+                                                        		Tablero::getTableroInicial();
+																	
+															}else					
+																Tablero::matchTotal();
 
                                                             repetir = false;
                                                         }
@@ -395,7 +469,12 @@ void Tablero::moverseEnTablero()
         //Sleep(1000);//disminuye el ritmo con el que los ciclos del bucle rotan
             }
 
-    }
+    }/*for (int i = 0; i<F; i++)
+	{
+		delete[] tablero[i];
+	}
+
+	delete[] tablero;*/
 }
 /* tablero::leerTableroDesdeTexto() : a partir de una archivo, imprime una cuadrÃ­cula
  * de 8x8. */
@@ -501,7 +580,49 @@ void Tablero::leerTableroDesdeTexto()
 		break;
 	}
 
+/*
+	for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
+		//en un arreglo.
 
+	{
+		//nivel1 >> numero[i] ;
+
+	/* trataba de instanciar las cajas desde aquí, pero me tira error diciendo
+	 * algo como que se intenta hacer conversión de un puntero de caja a una caja
+	 * de tipo no-escalar -btw no entendí porqué -*/
+
+		// Caja caja = new Caja();
+
+		//vectorDeCajas[i] = caja;
+
+
+
+		/*for (int j = 0 ; j < 8 ; j++)
+		{
+			//nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
+										/*la posición (i,j) de la matriz definida.
+		}
+
+	}*/
+
+
+	/*for (int i = 0 ; i < 8 ; i++)//Ciclo FOR para imprimir las componente del arreglo
+		//numero[] y formar una cuadrícula de números.
+	{
+
+
+		for (int j = 0; j < 8 ; j++)
+		{
+			puntero  = &matriz[i][j]; //puntero apunta a la dirección en memoria de la componente (i.j) de la matriz.
+
+			//Caja caja = new Caja();
+			//matrizDeCajas[i][j] = caja ;
+			cout << (*puntero) << " ";  // se imprime lo señalado por el puntero.
+
+		}
+
+		cout << endl;
+	}*/
 
 }
 
@@ -509,136 +630,242 @@ void Tablero::leerTableroDesdeTexto()
 
  
 
-
-
-void Tablero::hacerMatch() //3match
+/*void Tablero::llenarTablero()// Lo creé para poner generar un tablero aleatorio de prueba.
 {
-	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
-	int *puntero;
 
-	for (filas = 0; filas < 8; filas++)//For externo que recorre las filas.
-		{
-		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
-		{
-			puntero = &tablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
-
-			//Primero el programa comprueba si hay alguna cruz.
-			//           0
-			//          000
-			//           0
-			if(*puntero == tablero[filas + 1][columnas] and *puntero == tablero[filas - 1][columnas] and
-			*puntero == tablero[filas][columnas + 1] and *puntero == tablero[filas][columnas - 1])
-			//Este if comprueba si las posiciones a la izq, der, arriba, abajo, son iguales a la del lugar donde se encuentra el puntero.
-			{
-				if (columnas == 0 or columnas == 7) // Algunas veces los match horizontales causaban problemas, ya que al hacer columna +1 en
-					// la ultima columna o hacer columna - 1 en la primera columna hacia que saltara de fila, así que tomamos los casos en los que
-					// columnas es 0 (primera columna) o columnas es 7 (ultima columna).
-				{
-					if (tablero[filas][columnas + 1] != tablero[filas + 1] [0] and tablero[filas][columnas - 1] != tablero[filas - 1] [7])
-						// Comprueba que el valor en la ultima columna no sea igual al primero de la siguiente fila
-						// o que el valor en la primera columna no sea igual al ultimo de la fila anterior.
-						// Si no pasa esto debe hacer el match.
-					{
-						//Muevo el puntero y cambio a 0 las casillas correspondientes.
-						*puntero = 0;
-						puntero = &tablero[filas][columnas - 1];
-						*puntero = 0;
-						puntero = &tablero[filas][columnas + 1];
-						*puntero = 0;
-						puntero = &tablero[filas + 1][columnas];
-						*puntero = 0;
-						puntero = &tablero[filas - 1][columnas];
-						*puntero = 0;
-					}
-				}
-				else //Si no está en la columna final o en la columna inicial, es porque es un match normal.
-				{
-					*puntero = 0;
-					puntero = &tablero[filas][columnas - 1];
-					*puntero = 0;
-					puntero = &tablero[filas][columnas + 1];
-					*puntero = 0;
-					puntero = &tablero[filas + 1][columnas];
-					*puntero = 0;
-					puntero = &tablero[filas - 1][columnas];
-					*puntero = 0;
-				}
-
-				}
-
-			//Ahora el programa hace los match verticales
-			if(*puntero == tablero[filas + 1][columnas] and *puntero == tablero[filas - 1][columnas])
-			{
-				*puntero = 0;
-				puntero = &tablero[filas + 1][columnas];
-				*puntero = 0;
-				puntero = &tablero[filas - 1][columnas];
-				*puntero = 0;
-			}
-
-			// Y por ultimo los match horizontales, aquí se hace lo mismo que en el de la cruz para solucionar el problema de el columna +1 y columna - 1.
-			if(*puntero == tablero[filas][columnas + 1] and *puntero == tablero[filas][columnas - 1])
-			{
-				if (columnas == 0 or columnas == 7)
-				{
-					if (tablero[filas][columnas + 1] != tablero[filas + 1] [0] and tablero[filas][columnas - 1] != tablero[filas - 1] [7])
-					{
-						*puntero = 0;
-						puntero = &tablero[filas][columnas - 1];
-						*puntero = 0;
-						puntero = &tablero[filas][columnas + 1];
-						*puntero = 0;
-					}
-				}
-				else
-				{
-					*puntero = 0;
-					puntero = &tablero[filas][columnas - 1];
-					*puntero = 0;
-					puntero = &tablero[filas][columnas + 1];
-					*puntero = 0;
-				}
-			}
-		}
-	}
-}
-
-
-/*void Tablero::bajarMatriz()
-{
-	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
-
+	int filas, columnas;
 	double *puntero;
 
-	for (filas = 7; filas >= 0; filas--)
+
+	for (filas = 0; filas < 8; filas++)
 	{
 		for (columnas = 0; columnas < 8; columnas++)
 		{
-			puntero = &miTablero[filas][columnas];//En cada iteración, amarro el puntero a la posición por la que vayan las variables filas, columnas.
-			if (*puntero == 0)
-			{
-				int contador = 0;
-				for (int j = 0; j >= 0; j--)
-		{
-					contador++;
-
+			puntero = &miTablero[filas][columnas];
+			*puntero = 1 + rand() % 4;
 		}
-				for (int i = filas; i > 0; i--)
-				{
 
-					puntero = &miTablero[i][columnas];
-					*puntero = miTablero[i-1][columnas];
-
-				}
-
-			}
-		}
 	}
 }
-*/
+
+
+void Tablero::getTablero() //Imprime el tablero.
+{
+	int filas, columnas;
+	for (filas = 0; filas < 8; filas++)
+		{
+			for (columnas = 0; columnas < 8; columnas++)
+			{
+				cout << miTablero[filas][columnas] << " " ;
+			}
+
+			cout << endl;
+		}
+}*/
+
+//Primero el programa comprueba si hay alguna cruz.
+			//           0
+			//          000
+			//           0
+void Tablero::matchCruz()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	for (filas = 1; filas < 7; filas++)//For externo que recorre las filas.
+		{
+		for (columnas = 1; columnas < 7; columnas++) //for interno para las columnas
+			{
+				if(tablero[filas][columnas] == tablero[filas + 1][columnas] and tablero[filas][columnas] == tablero[filas - 1][columnas] and
+					tablero[filas][columnas] == tablero[filas][columnas + 1] and tablero[filas][columnas] == tablero[filas][columnas - 1])
+					//Este if comprueba si las posiciones a la izq, der, arriba, abajo, son iguales a la del lugar donde se encuentra el puntero.
+				{
+					tablero[filas][columnas] = 0;
+					tablero[filas + 1][columnas] = 0;
+					tablero[filas - 1][columnas] = 0;
+					tablero[filas][columnas + 1] = 0;
+					tablero[filas][columnas - 1] = 0;
+				}
+			}
+		}
+}
+
+//Match verticales
+void Tablero::matchVertical()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	for (filas = 1; filas < 7; filas++)//For externo que recorre las filas.
+		{
+		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+			{
+				if(tablero[filas][columnas] == tablero[filas + 1][columnas] and tablero[filas][columnas] == tablero[filas - 1][columnas])
+				{
+					tablero[filas][columnas] = 0;
+					tablero[filas + 1][columnas] = 0;
+					tablero[filas - 1][columnas] = 0;
+				}
+			}
+		}
+}
+
+//Match horizontales
+void Tablero::matchHorizontal()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	for (filas = 0; filas < 8; filas++)//For externo que recorre las filas.
+		{
+		for (columnas = 1; columnas < 7; columnas++) //for interno para las columnas
+			{
+				if(tablero[filas][columnas] == tablero[filas][columnas + 1] and tablero[filas][columnas] == tablero[filas][columnas - 1])
+				{
+					tablero[filas][columnas] = 0;
+					
+					tablero[filas][columnas - 1] = 0;
+					
+					tablero[filas][columnas + 1] = 0;
+				}
+			}
+		}
+}
+
+void Tablero::hacerMatch()
+{
+	system("clear");
+	Tablero::getTableroInicial();
+	sleep(1);
+	matchCruz();
+	 
+	matchHorizontal();
+	
+	matchVertical();
+	sleep(0.8);
+	system("clear");
+	Tablero::getTableroInicial();
+	
+}
+
+
+bool Tablero::ceroAbajo()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+
+	for (filas = 0; filas < 7; filas++)//For externo que recorre las filas.
+	{
+		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+		{
+			if(tablero[filas][columnas] > 0 and tablero[filas + 1][columnas] == 0)
+			   {
+				   return true;
+			   }
+		}
+	}
+	return false;
+}
 
 
 
+void Tablero::bajarMatriz()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	while (ceroAbajo())
+	{
+		for (filas = 0; filas < 7; filas++)//For externo que recorre las filas
+		{
+			for (columnas = 0; columnas < 8; columnas++) //for interno para las columna
+			{
+				if(tablero[filas + 1][columnas] == 0)
+				{   
+					
+					tablero[filas + 1][columnas] = tablero[filas][columnas];
+					
+					tablero[filas][columnas] = 0;
+
+				}
+			}
+		}
+		sleep(1);
+		system("clear");
+		Tablero::getTableroInicial();}
+}
+
+void Tablero::llenarPrimeraColumna()
+{
+	int columnas;
+	for (columnas = 0; columnas < 8; columnas++)
+	{
+		if(tablero[0][columnas] == 0)
+			tablero[0][columnas] = 1 + rand() % 4;
+	}
+}
+
+bool Tablero::hayCero()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	for (filas = 0; filas < 7; filas++)//For externo que recorre las filas.
+		{
+		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+			{
+			if(tablero[filas][columnas] == 0)
+				   {
+					   return true;
+				   }
+			}
+		}
+	return false;
+}
+
+void Tablero::rellenarMatriz()
+{
+	while (hayCero())
+	{
+		
+		bajarMatriz();
+		sleep(1);
+		system("clear");
+		Tablero::getTableroInicial();
+		
+		system("clear");
+		llenarPrimeraColumna();
+		Tablero::getTableroInicial();
+		
+		
+		
+	}
+}
+
+bool Tablero::hayMatch()
+{
+	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+	for (filas = 1; filas < 7; filas++)//For externo que recorre las filas.
+		{
+		for (columnas = 0; columnas < 8; columnas++) //for interno para las columnas
+			{
+			if(tablero[filas][columnas] == tablero[filas + 1][columnas] and tablero[filas][columnas] == tablero[filas - 1][columnas])
+			return true;
+			}
+		}
+
+	for (filas = 0; filas < 8; filas++)//For externo que recorre las filas.
+		{
+		for (columnas = 1; columnas < 7; columnas++) //for interno para las columnas
+			{
+			if(tablero[filas][columnas] == tablero[filas][columnas + 1] and tablero[filas][columnas] == tablero[filas][columnas - 1])
+				return true;
+			}
+		}
+	return false;
+}
+
+void Tablero::matchTotal()
+{
+	while (hayMatch())
+	{
+		hacerMatch();
+		//sleep(0.8);
+		rellenarMatriz();
+
+		
+	}
+
+}
 
 
 

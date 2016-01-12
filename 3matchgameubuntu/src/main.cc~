@@ -19,7 +19,8 @@
 
  #include <iostream>
 #include "tablero.h"
-#include "tablero.cc"
+#include "caja.h"
+
 
 
 using namespace std;
@@ -33,17 +34,66 @@ int main()
 
         puntero = &miTablero;
 
+		(*puntero).leerTableroDesdeTexto ();
 
+		system("clear");
 
-
-   		(*puntero).leerTableroDesdeTexto();
-        (*puntero).getTableroInicial();
-		cout<<endl;
+		(*puntero).getTableroInicial();
 
 		
 		(*puntero).moverseEnTablero();
+
+	//
 		
+		//(*puntero).hacerMatch ();
+		//(*puntero).matchTotal();
+
+   		//(*puntero).setTableroInicial ();
+		//(*puntero).getTableroInicial();
+
 	
+
+		
+		
+		//cout<<"pasó";
+
+		//(*puntero).getTableroInicial();
+
+
+	
+        
+		//cout<<endl;
+
+		
+		
+		
+		
+		//(*puntero).getTableroInicial();
+		//cout<<endl;
+
+
+        //(*puntero).moverseEnTablero();
+
+        //miTablero.getTableroInicial();
+        //cout<<endl;
+
+
+        //miTablero.moverseEnTablero();
+/*<<<<<<< HEAD
+
+
+=======
+    //miTablero.getTableroInicial();
+
+    srand (time (NULL));
+	Tablero unTablero;
+	unTablero.llenarTablero();
+	unTablero.getTablero();
+	cout << endl;
+	unTablero.hacerMatch();
+	unTablero.getTablero();
+>>>>>>> 02168c7d3795e9171602fa3ed03524de4286426d*/
+
 
 
     return 0;
