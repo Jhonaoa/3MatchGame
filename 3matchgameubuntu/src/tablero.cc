@@ -2,17 +2,17 @@
 /*
  * 3matchgame
  * Copyright (C) JHON ALEJANDRIO OROBIO ARCE 2016 <jhonaoa@s3pc24>
- * 
+ *
 3matchgame is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * 3matchgame is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along*/
 
 
@@ -38,25 +38,9 @@ Tablero::Tablero()
 
 Tablero::~Tablero()
 {
-   /* for(int i = 0 ; i<F;i++)
-	{
 
-		for(int j = 0; j<C; j++)
-		{
-
-			delete [] tabla[i][j];
-		}
-	}
-
-	delete [] tabla;*///dtor
 }
 
-/*void Tablero::setTableroInicial()
-{
-
-      
-
-}*/
 
 
 
@@ -89,13 +73,8 @@ void Tablero::getTableroInicial()
         cout<<endl;
         cout<<endl;
         }
-	/*for (int i = 0; i<F; i++)
-	{
-		delete[] tablero[i];
-	}
 
-	delete[] tablero;*/
-	
+
 }
 
 
@@ -104,19 +83,19 @@ int Tablero::kbhit(void)
 	struct termios oldt, newt;
   int ch;
   int oldf;
- 
+
   tcgetattr(STDIN_FILENO, &oldt);
   newt = oldt;
   newt.c_lflag &= ~(ICANON | ECHO);
   tcsetattr(STDIN_FILENO, TCSANOW, &newt);
   oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
   fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
- 
+
   ch = getchar();
- 
+
   tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
   fcntl(STDIN_FILENO, F_SETFL, oldf);
- 
+
   if(ch != EOF)
   {
     ungetc(ch, stdin);
@@ -298,16 +277,16 @@ void Tablero::moverseEnTablero()
 
                                                             *matriz = aCambiar2;//cambia el contenido del puntero matriz por el de aCambiar2
                                                             Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
-															
+
 															Tablero::hayMatch();
 
-															
+
 
 															if (Tablero::hayMatch()==false)
 															{
 																sleep(1);
 																system("clear");
-																
+
                                                         		matriz = &tablero[fila][columna];//señala el puntero matriz a la posición a la derecha de la actual
                                                         		aCambiar2 = *matriz;//alamacena el contenido de matriz en el atributo "aCambiar2"
                                                         		*matriz = aCambiar1;//cambia el contenido del puntero matriz por el almacenado en aCambiar1
@@ -315,9 +294,9 @@ void Tablero::moverseEnTablero()
 
                                                         		*matriz = aCambiar2;//cambia el contenido del puntero matriz por el de aCambiar2
                                                         		Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
-														
-																	
-															}else					
+
+
+															}else
 																Tablero::matchTotal();
 
                                                             repetir = false;//le da el valor a la variable repetir de false, para que salga del ciclo
@@ -346,11 +325,11 @@ void Tablero::moverseEnTablero()
                                                             matriz = &tablero[fila][columna];
                                                             *matriz = aCambiar2;
                                                             Tablero::getTableroInicial();
-															
+
 
 															Tablero::hayMatch();
 
-															
+
 															if (Tablero::hayMatch()==false)
 															{
 																sleep(1);
@@ -361,8 +340,8 @@ void Tablero::moverseEnTablero()
                                                         		matriz = &tablero[fila][moverColumnaI];
                                                         		*matriz = aCambiar2;
                                                         		Tablero::getTableroInicial();
-																	
-															}else					
+
+															}else
 																Tablero::matchTotal();
 
 															repetir = false;
@@ -391,12 +370,12 @@ void Tablero::moverseEnTablero()
                                                             matriz = &tablero[fila][columna];
                                                             *matriz = aCambiar2;
                                                             Tablero::getTableroInicial();
-															
+
 
 															Tablero::hayMatch();
-															
 
-															
+
+
 															if (Tablero::hayMatch()==false)
 															{
 																sleep(1);
@@ -407,8 +386,8 @@ void Tablero::moverseEnTablero()
                                                         		matriz = &tablero[moverArriba][columna];
                                                         		*matriz = aCambiar2;
                                                         		Tablero::getTableroInicial();
-																	
-															}else					
+
+															}else
 																Tablero::matchTotal();
 
                                                             repetir = false;
@@ -435,13 +414,13 @@ void Tablero::moverseEnTablero()
                                                             matriz = &tablero[fila][columna];
                                                             *matriz = aCambiar2;
                                                             Tablero::getTableroInicial();
-															
 
-															
+
+
 															Tablero::hayMatch();
-															
 
-															
+
+
 															if (Tablero::hayMatch()==false)
 															{
 																sleep(1);
@@ -452,8 +431,8 @@ void Tablero::moverseEnTablero()
                                                         		matriz = &tablero[moverAbajo][columna];
                                                         		*matriz = aCambiar2;
                                                         		Tablero::getTableroInicial();
-																	
-															}else					
+
+															}else
 																Tablero::matchTotal();
 
                                                             repetir = false;
@@ -466,18 +445,13 @@ void Tablero::moverseEnTablero()
 
                         }
                     }
-        //Sleep(1000);//disminuye el ritmo con el que los ciclos del bucle rotan
+
             }
 
-    }/*for (int i = 0; i<F; i++)
-	{
-		delete[] tablero[i];
-	}
-
-	delete[] tablero;*/
+    }
 }
-/* tablero::leerTableroDesdeTexto() : a partir de una archivo, imprime una cuadrÃ­cula
- * de 8x8. */
+
+
 void Tablero::leerTableroDesdeTexto()
 
 {
@@ -580,88 +554,7 @@ void Tablero::leerTableroDesdeTexto()
 		break;
 	}
 
-/*
-	for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
-		//en un arreglo.
 
-	{
-		//nivel1 >> numero[i] ;
-
-	/* trataba de instanciar las cajas desde aquí, pero me tira error diciendo
-	 * algo como que se intenta hacer conversión de un puntero de caja a una caja
-	 * de tipo no-escalar -btw no entendí porqué -*/
-
-		// Caja caja = new Caja();
-
-		//vectorDeCajas[i] = caja;
-
-
-
-		/*for (int j = 0 ; j < 8 ; j++)
-		{
-			//nivel1 >> matriz[i][j]; /* Guarda lo que haya en el archivo  nivel1.txt en
-										/*la posición (i,j) de la matriz definida.
-		}
-
-	}*/
-
-
-	/*for (int i = 0 ; i < 8 ; i++)//Ciclo FOR para imprimir las componente del arreglo
-		//numero[] y formar una cuadrícula de números.
-	{
-
-
-		for (int j = 0; j < 8 ; j++)
-		{
-			puntero  = &matriz[i][j]; //puntero apunta a la dirección en memoria de la componente (i.j) de la matriz.
-
-			//Caja caja = new Caja();
-			//matrizDeCajas[i][j] = caja ;
-			cout << (*puntero) << " ";  // se imprime lo señalado por el puntero.
-
-		}
-
-		cout << endl;
-	}*/
-
-}
-
-
-
- 
-
-/*void Tablero::llenarTablero()// Lo creé para poner generar un tablero aleatorio de prueba.
-{
-
-	int filas, columnas;
-	double *puntero;
-
-
-	for (filas = 0; filas < 8; filas++)
-	{
-		for (columnas = 0; columnas < 8; columnas++)
-		{
-			puntero = &miTablero[filas][columnas];
-			*puntero = 1 + rand() % 4;
-		}
-
-	}
-}
-
-
-void Tablero::getTablero() //Imprime el tablero.
-{
-	int filas, columnas;
-	for (filas = 0; filas < 8; filas++)
-		{
-			for (columnas = 0; columnas < 8; columnas++)
-			{
-				cout << miTablero[filas][columnas] << " " ;
-			}
-
-			cout << endl;
-		}
-}*/
 
 //Primero el programa comprueba si hay alguna cruz.
 			//           0
@@ -717,9 +610,9 @@ void Tablero::matchHorizontal()
 				if(tablero[filas][columnas] == tablero[filas][columnas + 1] and tablero[filas][columnas] == tablero[filas][columnas - 1])
 				{
 					tablero[filas][columnas] = 0;
-					
+
 					tablero[filas][columnas - 1] = 0;
-					
+
 					tablero[filas][columnas + 1] = 0;
 				}
 			}
@@ -732,14 +625,14 @@ void Tablero::hacerMatch()
 	Tablero::getTableroInicial();
 	sleep(1);
 	matchCruz();
-	 
+
 	matchHorizontal();
-	
+
 	matchVertical();
 	sleep(0.8);
 	system("clear");
 	Tablero::getTableroInicial();
-	
+
 }
 
 
@@ -772,10 +665,10 @@ void Tablero::bajarMatriz()
 			for (columnas = 0; columnas < 8; columnas++) //for interno para las columna
 			{
 				if(tablero[filas + 1][columnas] == 0)
-				{   
-					
+				{
+
 					tablero[filas + 1][columnas] = tablero[filas][columnas];
-					
+
 					tablero[filas][columnas] = 0;
 
 				}
@@ -816,18 +709,18 @@ void Tablero::rellenarMatriz()
 {
 	while (hayCero())
 	{
-		
+
 		bajarMatriz();
 		sleep(1);
 		system("clear");
 		Tablero::getTableroInicial();
-		
+
 		system("clear");
 		llenarPrimeraColumna();
 		Tablero::getTableroInicial();
-		
-		
-		
+
+
+
 	}
 }
 
@@ -862,7 +755,7 @@ void Tablero::matchTotal()
 		//sleep(0.8);
 		rellenarMatriz();
 
-		
+
 	}
 
 }
