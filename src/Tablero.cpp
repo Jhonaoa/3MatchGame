@@ -783,7 +783,7 @@ void Tablero::llenarPrimeraColumna()
 bool Tablero::hayCero()
 {
 	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
-	for (filas = 0; filas < (F-1); filas++)//For externo que recorre las filas.
+	for (filas = 0; filas < F; filas++)//For externo que recorre las filas.
 		{
 		for (columnas = 0; columnas < C; columnas++) //for interno para las columnas
 			{
