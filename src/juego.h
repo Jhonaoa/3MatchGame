@@ -23,7 +23,7 @@ public:
 	void setTipo3(int requerido); // La cantidad mencionada entra como argumento.
 	void setTipo4(int requerido);
 	void setNivel(int lv);
-	void disminuirRequerimientoTodoTipo(int tipo); 
+	void disminuirRequerimientoTodoTipo(int tipo); 
 	void disminuirRequerimientoTipo1(); // Cada uno de estos cuatro
 	void disminuirRequerimientoTipo2(); // reducen en una unidad, los requerimientos
 	void disminuirRequerimientoTipo3(); // de algún tipo, para terminar el nivel.
@@ -45,7 +45,7 @@ private:
 	int requerimientoTipo2;
 	int requerimientoTipo3;
 	int requerimientoTipo4;
-	int nivel ; 
+	int nivel; 
 	// TIEMPO: NO SÉ DE QUÉ TIPO DEFINIRLO.
 	
 };

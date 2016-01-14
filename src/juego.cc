@@ -106,3 +106,30 @@ void Juego::disminuirRequerimientoTodoTipo(int tipo)
 	}
 		
 }
+
+
+int Juego::getRequerimientoTipo1()
+{
+	return requerimientoTipo1;
+}
+
+int Juego::getRequerimientoTipo2()
+{
+	return requerimientoTipo2;
+}
+
+int Juego::getRequerimientoTipo3()
+{
+	return requerimientoTipo3;
+}
+
+int Juego::getRequerimientoTipo4()
+{
+	return requerimientoTipo4;
+}
+
+int Juego::getNivel()
+{
+	return nivel;
+}
+

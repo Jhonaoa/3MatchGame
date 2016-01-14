@@ -1,9 +1,21 @@
 #ifndef TABLERO_H
 #define TABLERO_H
+
 #define F 8
 #define C 8
-#include<windows.h>
-
+#include "caja.h"
+#include"juego.h"
+#include <cstdlib>
+#include <fstream>
+#include <time.h>
+#include <iostream>
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
+//#include<windows.h>
+#include<stdio.h>
+//#include<conio.h>
+using namespace std;
 
 class Tablero
 {
@@ -12,28 +24,50 @@ class Tablero
         Tablero();
         ~Tablero();
 
-        void setTableroInicial(int filas, int columnas);
+        void setTableroInicial();
 
         void getTableroInicial();
 
-        void moverseEnTablero();
+        void moverseEnTablero(Juego &game);
 
-        void leerMatrizDesdeArchivo (int *apuntador );
+       bool operator == (Caja cajaSiguiente);
 
-        
         void leerTableroDesdeTexto(Juego &game);
-	void guardarTableroEnArchivo(Juego &juego);
 
-         void llenarTablero ();
-	 void getTablero();
-	 void hacerMatch();
-	 void bajarMatriz();
-	 bool ceroAbajo ();
-	 void llenarPrimeraColumna();
-	 bool hayCero();
-	 void rellenarMatriz();
-	 bool hayMatch();
-	 void matchTotal();
+		int kbhit(void);
+
+		void matchCruz(Juego &juego);
+
+		void matchVertical(Juego &juego);
+
+		void matchHorizontal(Juego &juego);
+
+		void hacerMatch(Juego &juego );
+
+		bool ceroAbajo();
+
+		void bajarMatriz();
+
+		void guardarTableroEnArchivo(Juego &juego) ;
+		
+		void llenarPrimeraColumna();
+
+		bool hayCero();
+
+		void rellenarMatriz();
+
+		bool hayMatch();
+
+		void matchTotal(Juego &game);
+
+		
+
+
+
+
+        void llenarTablero ();
+        void getTablero();
+        
 
 
 
@@ -41,16 +75,18 @@ class Tablero
     private:
 
 
-        int tablero[F][C];
+        Caja **tablero;
+	
         int fila;
         int columna;
         int aCambiar1;
         int aCambiar2;
-        int *matriz;
+        Caja *matriz;
+		
 
 
 
-        double miTablero[8][8];
+        
 
 
 };
