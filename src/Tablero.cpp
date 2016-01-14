@@ -82,7 +82,11 @@ void Tablero::getTableroInicial()
 
 
 }
-
+//http://cboard.cprogramming.com/c-programming/63166-kbhit-linux.html
+/*Esta función se deriva de una galería usada en windows para el uso del teclado durante 
+la ejecución del programa,dado que en linux no está presente esta galería y con la intención de 
+darle un poco más de dinamismo al programa, se utilizó este método de la fuente anteriormente
+especificada*/
 
 int Tablero::kbhit(void)
 {
@@ -111,22 +115,30 @@ int Tablero::kbhit(void)
 
 void Tablero::moverseEnTablero(Juego &game)
 {
-    bool repeat = true;
-	int S = game.getTiempo () % 60 ;
-	int M = game.getTiempo() / 60;
-	bool salir = true;
-    while(repeat)//se usa un ciclo while para mantener la interacción con el teclad
+    	bool repeat = true;//variable utilizada para la ejecución del ciclo que mantiene
+    	//la interacción del teclado activa
+	int S = game.getTiempo () % 60 ;/*la variable S recibe el atributo tiempo de el objeto
+	juego y realiza el módulo para presentar el tiempo en el reloj*/
+	int M = game.getTiempo() / 60;/*la variable M recibe el atributo tiempo de la clase Juego
+	y lo divide entre 60 para presentar el equivalente en segundos del tiempo*/
+	bool salir = true;/*esta variable se utiliza para mantener el ciclo del reloj y el movimiento*/
+	
+    while(repeat)//se usa un ciclo while para mantener la interacción con el teclado
     //activa hasta que se requiera.
         {   
 			
 			
-			while(salir)
+			while(salir)/*ciclo responsable de los cambios en el reloj y captura de los movimientos
+			por medio del método kbhit y getchar */ 
 			{
 			
 				system("clear");
 			
-				cout<<M<<":"<<S<<endl;
+				cout<<M<<":"<<S<<endl;//muestra los minutos y los seguundos por medio de un cout
 				cout<<endl;
+				
+				/*lista de mensajes a mostrar durante la ejecución del programa, los requerimientos
+				de los animales a liberar y l aimpresión del tablero por primera vez*/
 				cout<<"   Debes liberar  estos animales para superar el nivel: "<<endl;
 				cout<<endl;
 				cout<<"Leones(1): "<<game.getRequerimientoTipo1 ()<<"   ";
@@ -138,7 +150,7 @@ void Tablero::moverseEnTablero(Juego &game)
 				
 				Tablero::getTableroInicial();
 			
-				S--;
+				S--;//Reducción de la variable S, responsable de mostrar los segundos, S--, en uno por ciclo 
 
 				if(M==0 and S== 30)
 				{
