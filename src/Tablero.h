@@ -1,5 +1,24 @@
-#ifndef TABLERO_H
-#define TABLERO_H
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
+/*
+ * 3matchgame
+ * Copyright (C) JHON ALEJANDRIO OROBIO ARCE 2016 <jhonaoa@s3pc24>
+ * 
+3matchgame is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * 3matchgame is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef _TABLERO_H_
+#define _TABLERO_H_
 
 #define F 8
 #define C 8
@@ -12,9 +31,9 @@
 #include <termios.h>
 #include <unistd.h>
 #include <fcntl.h>
-//#include<windows.h>
+
 #include<stdio.h>
-//#include<conio.h>
+
 using namespace std;
 
 class Tablero
@@ -30,9 +49,7 @@ class Tablero
 
         void moverseEnTablero(Juego &game);
 
-       bool operator == (Caja cajaSiguiente);
-
-        void leerTableroDesdeTexto(Juego &game);
+		void leerTableroDesdeTexto(Juego &game, int lv);
 
 		int kbhit(void);
 
@@ -60,18 +77,9 @@ class Tablero
 
 		void matchTotal(Juego &game);
 
-		
+		void cargarTableroDesdeArchivo(Juego &juego);
 
-
-
-
-        void llenarTablero ();
-        void getTablero();
-        
-
-
-
-    protected:
+	protected:
     private:
 
 
@@ -86,9 +94,12 @@ class Tablero
 
 
 
+
+
+
         
 
 
 };
 
-#endif // TABLERO_H
+#endif // _TABLERO_H_
