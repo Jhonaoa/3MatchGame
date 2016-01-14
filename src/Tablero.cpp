@@ -435,22 +435,20 @@ void Tablero::moverseEnTablero(Juego &game)
 }
 
 
-void Tablero::leerTableroDesdeTexto(Juego &game )
+void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 {
 	Juego *punteroJuego = &game;
 	
 	Caja *puntero =  &tablero[0][0];
 	
-	int variableSwitch = rand() % 3;
-
 	int aux = 0; // DOUBLE porque maneja unidades de tiempo en milisegundos.
 	//double *punteroAux = &aux;  //DOUBLE porque apunta unidades de tiempo en milisegundos.
 
-	switch (variableSwitch) /*Posibilidades de matriz inicial para el nivel 1 por medio de un switch
+	switch (lv) /*Posibilidades de matriz inicial para el nivel 1 por medio de un switch
 						En todas los casos posibles sea crea un IFSTREAM. pero en cada caso se accede
 						a un archivo .txt diferente. */
 	{
-		case 0:
+		case 1:
 		{ // caso en que numero aleatorio % 3 sea cero
 			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1.
 											//Archivo Buscado: nivel1.txt
@@ -498,10 +496,10 @@ void Tablero::leerTableroDesdeTexto(Juego &game )
 		}
 		break;
 			
-		case 1:
+		case 2:
 		{
 			//caso en que numero aleatorio % 3 sea 1
-			ifstream nivel1 ("nivel1.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
+			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-2.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
 			{
@@ -545,9 +543,9 @@ void Tablero::leerTableroDesdeTexto(Juego &game )
 		}
 		break;
 			
-		case 2:
+		case 3:
 		{//caso en que numero aleatorio % 3 sea 2:
-			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
+			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-3.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
 			{
@@ -590,6 +588,9 @@ void Tablero::leerTableroDesdeTexto(Juego &game )
 			}
 		}
 		break;
+		
+		default :
+			break;
 	}
 } 
 
