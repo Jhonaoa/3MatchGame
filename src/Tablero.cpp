@@ -1,4 +1,22 @@
 
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
+/*
+ * 3matchgame
+ * Copyright (C) JHON ALEJANDRIO OROBIO ARCE 2016 <jhonaoa@s3pc24>
+ * 
+3matchgame is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * 3matchgame is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along*/
+
+
 #include "tablero.h"
 
 
@@ -30,19 +48,24 @@ Tablero::~Tablero()
 void Tablero::getTableroInicial()
 {
     int i,j;
+			
 
     for (i = 0; i < F; i++)
         {
-            for(int k = 0; k< F;k++)
+			cout<<"           ";
+
+			for(int k = 0; k< F;k++)
             {
                 cout<<"-----";
             }
+			
             cout<<endl;
+			cout<<"           ";
 
 
             for(j = 0; j< C; j++)
             {
-
+				
 
                 if (i == fila and j ==columna )
                 {
@@ -89,10 +112,59 @@ int Tablero::kbhit(void)
 void Tablero::moverseEnTablero(Juego &game)
 {
     bool repeat = true;
+	int S = game.getTiempo () % 60 ;
+	int M = game.getTiempo() / 60;
+	bool salir = true;
     while(repeat)//se usa un ciclo while para mantener la interacción con el teclad
     //activa hasta que se requiera.
-        {
+        {   
+			
+			
+			while(salir)
+			{
+			
+				system("clear");
+			
+				cout<<M<<":"<<S<<endl;
+				cout<<endl;
+				cout<<"   Debes liberar  estos animales para superar el nivel: "<<endl;
+				cout<<endl;
+				cout<<"Leones(1): "<<game.getRequerimientoTipo1 ()<<"   ";
+				cout<<"Girafas(2): "<<game.getRequerimientoTipo2 ()<<"   ";
+				cout<<"Hipopótamos(3): "<<game.getRequerimientoTipo3 ()<<"   ";
+				cout<<"Cebras(4): "<<game.getRequerimientoTipo4 ()<<endl;
+				cout<<endl;
+				cout<<endl;
+				
+				Tablero::getTableroInicial();
+			
+				S--;
 
+				if(M==0 and S== 30)
+				{
+
+					cout<<"Quedan menos de treinte segundos de juego, apúrele"<<endl;
+					cout<<endl;
+					
+				}
+
+				if (M== 0 and S == 0 
+					or game.requerimientosCumplidos () == true)
+				{
+					cout<<"Has perdido!!, Loserrrrrr!!"<<endl;
+					salir = false;
+					repeat = false;
+				}
+				
+				if (S == -1)
+				{
+					S = 59;
+					M --;
+				}
+			
+					
+				sleep(1);
+				
 
             if (kbhit())//se usa el comando kbhit() para permitir
                 {   // la interacción del teclado durante la ejecución del programa
@@ -164,7 +236,11 @@ void Tablero::moverseEnTablero(Juego &game)
 
                             break;
 
-                            case 119:// moverse arriba 119 es la posición de la tecla "w"
+
+						
+
+
+							case 119:// moverse arriba 119 es la posición de la tecla "w"
                                 //en la tabla ASCCI
 
 
@@ -206,6 +282,14 @@ void Tablero::moverseEnTablero(Juego &game)
 
                             break;
 
+							case 103:
+								Tablero::guardarTableroEnArchivo(game);
+								cout<<"el juego se ha guardado satisfactoriamente";
+								exit(0);
+								 
+	
+							break;
+
                             case 32://selccionar ficha a mover. 32 es la posición de la tecla
                             //espacio en la tabla ASSCI
 
@@ -228,7 +312,7 @@ void Tablero::moverseEnTablero(Juego &game)
 
                                  while(repetir)//se usa un ciclo while para mantener la interacción con el teclado
                                         //activa hasta que se requiera.
-                                 {
+                                 { 
 
                                     if (kbhit())//se usa el comando kbhit() para permitir
                                     // la interacción del teclado durante la ejecución del programa
@@ -431,7 +515,57 @@ void Tablero::moverseEnTablero(Juego &game)
 
             }
 
-    }
+		}
+	}
+}
+
+
+
+void Tablero::cargarTableroDesdeArchivo(Juego &juego)
+{
+	
+
+	ifstream archivoTexto("Guardado.txt");
+
+	if(archivoTexto.fail())
+	{
+
+		
+		cerr  << "No Fue Posible Cargar Último Archivo Guardado";
+		cout << endl;
+	
+	}
+
+	int aux ; 
+	
+	archivoTexto >> aux;
+	juego.setNivel(aux);
+
+	archivoTexto >> aux; 
+	juego.setTiempo(aux);
+	
+	archivoTexto >> aux;
+	juego.setTipo1(aux);
+
+	archivoTexto >> aux;
+	juego.setTipo2(aux);
+
+	archivoTexto >> aux;
+	juego.setTipo3(aux);
+
+	archivoTexto >> aux;
+	juego.setTipo4(aux) ; 
+
+	for (int filas = 0; filas < F ; filas++)
+	{
+		for(int columnas = 0 ; columnas < C ; columnas++)
+		{
+			archivoTexto >> aux;
+			tablero[filas][columnas].setTipo(aux);	
+		} 
+	} 
+
+	
 }
 
 
@@ -439,7 +573,7 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 {
 	Juego *punteroJuego = &game;
 	
-	Caja *puntero =  &tablero[0][0];
+	//Caja *puntero =  &tablero[0][0];
 	
 	int aux = 0; // DOUBLE porque maneja unidades de tiempo en milisegundos.
 	//double *punteroAux = &aux;  //DOUBLE porque apunta unidades de tiempo en milisegundos.
@@ -456,14 +590,14 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 1" ;
 				cout << endl;
-				exit(1);
+				
 			}
 
 			nivel1 >> aux; 
 			(*punteroJuego).setNivel(aux);
 
-			//nivel1 >> aux; 
-			//(*punteroJuego).setTime(aux);
+			nivel1 >> aux; 
+			(*punteroJuego).setTiempo(aux);
 
 			nivel1 >> aux ; 
 			(*punteroJuego).setTipo1(aux);
@@ -505,14 +639,14 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 2" ;
 				cout << endl;
-				exit(1);
+				
 			}
 
 			nivel1 >> aux;
 			(*punteroJuego).setNivel(aux);
 
-			//nivel1 >> aux; 
-			//(*punteroJuego).setTime(aux);
+			nivel1 >> aux; 
+			(*punteroJuego).setTiempo(aux);
 
 			nivel1 >> aux ; 
 			(*punteroJuego).setTipo1(aux);
@@ -551,14 +685,14 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 3" ;
 				cout << endl;
-				exit(1);
+				
 			}
 
 			nivel1 >> aux;
 			(*punteroJuego).setNivel(aux);
 
-			//nivel1 >> aux; 
-			//(*punteroJuego).setTime(aux);
+			nivel1 >> aux; 
+			(*punteroJuego).setTiempo(aux);
 
 			nivel1 >> aux ; 
 			(*punteroJuego).setTipo1(aux);
@@ -604,7 +738,7 @@ void Tablero::guardarTableroEnArchivo(Juego &juego) //entra la dirección en mem
 
 	datosGuardados <<  juego.getNivel() << "\n" ; 
 
-	// datosGuardados << (*punteroJuego).getTiempo() << "\n" ;
+	datosGuardados << (*punteroJuego).getTiempo() << "\n" ;
 
 	datosGuardados << (*punteroJuego).getRequerimientoTipo1() << "\n" ;
 
@@ -676,9 +810,11 @@ void Tablero::matchVertical(Juego &juego)
 				{
 					juego.disminuirRequerimientoTodoTipo(tablero[filas][columnas].getTipo());
 					tablero[filas][columnas].setTipo(0);
+					
 					juego.disminuirRequerimientoTodoTipo(tablero[filas+1][columnas].getTipo());
 					tablero[filas + 1][columnas].setTipo(0);
-					juego.disminuirRequerimientoTodoTipo(tablero[filas+1][columnas].getTipo());
+					
+					juego.disminuirRequerimientoTodoTipo(tablero[filas-1][columnas].getTipo());
 					tablero[filas - 1][columnas].setTipo(0);
 				}
 			}
