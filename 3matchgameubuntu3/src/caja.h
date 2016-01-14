@@ -34,6 +34,8 @@ protected:
 private:
 
 	int tipo;
+	bool esLiberable; 
+	int puntaje;
 	
 
 };
