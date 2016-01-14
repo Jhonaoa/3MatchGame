@@ -1,4 +1,23 @@
 
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-  */
+/*
+ * juego.cc
+ * Copyright (C) 2016 Jhon Alejandro Orobio <alejo@alejo-OEM>
+ *
+ * 3matchgameubuntu is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * 3matchgameubuntu is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "juego.h"
 
 //Constructor:
@@ -47,15 +66,28 @@ void Juego::setTipo4(int requerido)
 	nivel = lv;
 }
 
-void Juego::disminuirRequerimientoTipo1()
+void Juego::disminuirRequerimientoTipo1()
 {
-	requerimientoTipo1--;
+	if(requerimientoTipo1-1 < 0)
+	{
+		requerimientoTipo1 = 0; 
+
+	}
+	else 
+		requerimientoTipo1--;
+
 }
 
 /* void Juego::disminuirRequerimientoTipo2(): Disminuye en una unidad el valor del atributo
  * requerimientoTipo2 */
 void Juego::disminuirRequerimientoTipo2()
 {
+	if(requerimientoTipo2-1 < 0)
+	{
+		requerimientoTipo2 = 0; 
+
+	}
+	else 
 	requerimientoTipo2--;
 }
 
@@ -63,6 +95,12 @@ void Juego::disminuirRequerimientoTipo2()
  * requerimientoTipo3 */
 void Juego::disminuirRequerimientoTipo3()
 { 
+	if(requerimientoTipo3-1 < 0)
+	{
+		requerimientoTipo3 = 0; 
+
+	}
+	else 
 	requerimientoTipo3--;
 }
 
@@ -70,6 +108,12 @@ void Juego::disminuirRequerimientoTipo3()
  * requerimientoTipo4 */
 void Juego::disminuirRequerimientoTipo4()
 {
+	if(requerimientoTipo4-1 < 0)
+	{
+		requerimientoTipo4 = 0; 
+
+	}
+	else 
 	requerimientoTipo4--;
 }
 
@@ -107,7 +151,6 @@ void Juego::disminuirRequerimientoTodoTipo(int tipo)
 		
 }
 
-
 int Juego::getRequerimientoTipo1()
 {
 	return requerimientoTipo1;
@@ -131,5 +174,48 @@ int Juego::getRequerimientoTipo4()
 int Juego::getNivel()
 {
 	return nivel;
+
 }
+
+
+bool Juego::requerimientosCumplidos ()
+{
+	if(requerimientoTipo1 <= 0
+	   and requerimientoTipo2<= 0
+	   and requerimientoTipo3 <= 0
+	   and requerimientoTipo4 <= 0)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
+
+
+void Juego::setTiempo(int segundos)
+{
+
+	tiempo = segundos;
+}
+
+
+
+int Juego::getTiempo()
+{
+
+	return tiempo;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
