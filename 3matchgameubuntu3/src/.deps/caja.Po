@@ -1,0 +1,5 @@
+caja.o: caja.cc /usr/include/stdc-predef.h caja.h
+
+/usr/include/stdc-predef.h:
+
+caja.h:

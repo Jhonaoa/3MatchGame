@@ -1,0 +1,20 @@
+[Anjuta]
+Geometry=736x972+234+27
+
+[File Loader]
+Files=../../src/caja.cc#1%%%../../src/main.cc#34%%%../../src/tablero.h#111%%%../../src/tablero.cc#124%%%../../src/caja.h#1
+
+[Document Manager]
+bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
+
+[Execution]
+Program uri=../../src/3matchgameubuntu
+Run in terminal=2
+Working directories=../../../3matchgameubuntu
+
+[Project Manager]
+Shortcut=3matchgameubuntu//src//3matchgameubuntu
+Expand=3matchgameubuntu%%%3matchgameubuntu//src%%%3matchgameubuntu//src//3matchgameubuntu%%%3matchgameubuntu//dist_doc
+
+[Debugger]
+Stop at beginning=2
