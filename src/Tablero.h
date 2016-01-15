@@ -15,6 +15,8 @@
  * 
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *Responsabilidad: la clase tablero simula los aspectos dinámicos del juego, como el movimiento en el tablero y 
+ los distintos tipos de match 
  */
 
 #ifndef _TABLERO_H_
