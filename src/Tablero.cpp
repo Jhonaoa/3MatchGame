@@ -3,6 +3,7 @@
 /*
  * 3matchgame
  * Copyright (C) JHON ALEJANDRIO OROBIO ARCE 2016 <jhonaoa@s3pc24>
+                 SEBASTIÁN VILLEGAS GUTIERREZ <jhoan.villegas@correounivalle.edu.co>
  * 
 3matchgame is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -909,8 +910,11 @@ void Tablero::matchHorizontal(Juego &juego) // metodo match horizontales.
 		{
 			if(tablero[filas][columnas].getTipo() == tablero[filas][columnas + 1].getTipo() 
 			and tablero[filas][columnas].getTipo() == tablero[filas][columnas - 1].getTipo())
+			//condicional que comprueba si la caja de la columna siguiente y la anterior son iguales.
 			
 			{
+				//Si ocurre el if, entra a hacer el match
+				//Lo mismo que los otros, disminuye requerimientos y cambia a 0 las cajas implicadas.
 					juego.disminuirRequerimientoTodoTipo(tablero[filas][columnas].getTipo());
 					tablero[filas][columnas].setTipo ( 0);
 
@@ -924,81 +928,116 @@ void Tablero::matchHorizontal(Juego &juego) // metodo match horizontales.
 		}
 }
 
+
+//Metodo hacer match, este metodo junta los 3 anteriores match (cruz, horizontales y verticales)
 void Tablero::hacerMatch(Juego &juego )
 {
-	system("clear");
-	Tablero::getTableroInicial();
-	sleep(1);
+	
+	system("clear");//Limpio pantalla
+	Tablero::getTableroInicial();//imprimo el tablero antes y después de realizar el match.
+	sleep(1); // sleep de 1 segundo.
+	
+	//El metodo realiza los 3 match (llamo los metodos de match)
 	matchCruz(juego );
 
 	matchHorizontal(juego );
 
 	matchVertical(juego );
 	sleep(0.8);
-	system("clear");
-	Tablero::getTableroInicial();
+	system("clear"); //Limpio pantalla
+	Tablero::getTableroInicial(); //y Finalmente imprimo la pantalla con los match.
 
 }
 
-
+//Metodo ceroAbajo
 bool Tablero::ceroAbajo()
+//Este metodo se encarga de ver si en alguna parte de la matriz hay una caja (mayor que 0) que abajo de ella hay una caja vacia (en 0).
 {
-	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+int filas,columnas; 
+	//Variables para recorrer el for. filas y columnas, que nos permiten saber a qué posición 
+	//de la matriz estamos accediendo.
 
 	for (filas = 0; filas < (F-1); filas++)//For externo que recorre las filas.
+	//recorre hasta la penultima fila.
 	{
 		for (columnas = 0; columnas < C; columnas++) //for interno para las columnas
 		{
+			// Condicional que compruba si la posición que accedemos no es una caja vacia y la de abajo sí es.
+			// (caja > 0 y caja de abajo ==0)
+			
 			if(tablero[filas][columnas].getTipo() > 0 
 			   and tablero[filas + 1][columnas].getTipo() == 0)
 			   {
-				   return true;
+				   return true; // si la condición se cumple, el metodo retorna true y se termina.
 			   }
 		}
 	}
-	return false;
+	return false; // de no encontrar en ninguna parte de la matriz la condición, retorna falso.
 }
 
 
-
+//Metodo bajarMatriz
 void Tablero::bajarMatriz()
+//Este metodo se encarga de subir todos los ceros que se generan después de un match. Para que los números que estan arriba caigan.
 {
-	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+int filas,columnas; 
+	//Variables para recorrer el for. filas y columnas, que nos permiten saber a qué posición 
+	//de la matriz estamos accediendo.
+	
+	//Este metodo se va a realizar mientras el metodo ceroAbajo() nos compruebe si en alguna parte de la matriz hay una caja
+	//con una caja vacia abajo
 	while (ceroAbajo())
 	{
 		for (filas = 0; filas < (F-1); filas++)//For externo que recorre las filas
+		//Recorre hasta la penultima fila
 		{
 			for (columnas = 0; columnas < C; columnas++) //for interno para las columna
 			{
+			
 				if(tablero[filas + 1][columnas].getTipo() == 0)
+				//Comprueba que la posición donde va la matriz tiene un 0 abajo.
+				
 				{
+					//Si el condicional se cumple entra a subir el 0.
 
 					tablero[filas + 1][columnas].setTipo(tablero[filas][columnas].getTipo());
+					//Primero al valor de abajo (donde se encuentra el 0) se le asigna el valor donde se encuentra
+					//el recorrido para así ambos valores quedar iguales.
+					
 
 					tablero[filas][columnas].setTipo(0);
+					//Y luego se le asgina el valor de 0 al lugar donde va el recorrido.
 
 				}
 			}
 		}
-		sleep(1);
-		system("clear");
-		Tablero::getTableroInicial();
+		sleep(1); // sleep de 1 segundo.
+		system("clear"); // Se limpia la pantalla
+		Tablero::getTableroInicial();  //se imprime la pantalla con el cambio de las posiciones.
 	}
 }
 
+//Metodo llenarPrimeraColumna()
 void Tablero::llenarPrimeraColumna()
+//Este metodo se encarga de cambiar cualquier 0 que encuentra en la primera columna por un númeor aleatorio.
 {
-	int columnas;
+	int columnas; //variable columna para con el for recorrer la primera columna.
 	for (columnas = 0; columnas < C; columnas++)
 	{
-		if(tablero[0][columnas].getTipo() == 0)
-			tablero[0][columnas].setTipo(1 + rand() % 4);
+		if(tablero[0][columnas].getTipo() == 0) //Si algún número de la primera fila es 0
+			tablero[0][columnas].setTipo(1 + rand() % 4);// Procede a cambiarla por un nuevo número aleatorio.
 	}
 }
 
+//Metodo hayCero()
 bool Tablero::hayCero()
+
+//este metodo recorre toda la matriz y da true si alguna posición la caja está vacia (es 0) da false de lo contrario.
 {
-	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y columna del tablero está el puntero en algún momento.
+int filas,columnas; 
+	//Variables para recorrer el for. filas y columnas, que nos permiten saber a qué posición 
+	//de la matriz estamos accediendo.
+	
 	for (filas = 0; filas < F; filas++)//For externo que recorre las filas.
 		{
 		for (columnas = 0; columnas < C; columnas++) //for interno para las columnas
@@ -1012,16 +1051,22 @@ bool Tablero::hayCero()
 	return false;
 }
 
+
+//Metodo rellenarMatriz()
 void Tablero::rellenarMatriz()
+//Este metodo se encarga de subir los 0 generados después de un match (metodo bajarMatriz) y llenar la primera fila mientras haya 
+//algún cero en la matriz.
 {
 	while (hayCero())
 	{
 
 		bajarMatriz();
+		//Cada vez que baja la matriz se hace un sleep de 1 seg, se limpia pantalla y se imprime el nuevo tablero.
 		sleep(1);
 		system("clear");
 		Tablero::getTableroInicial();
 
+//Cada vez que se llena la primera fila, se limpia pantalla antes y se imprime el nuevo tablero.
 		system("clear");
 		llenarPrimeraColumna();
 		Tablero::getTableroInicial();
@@ -1031,39 +1076,55 @@ void Tablero::rellenarMatriz()
 	}
 }
 
+
+//metodo hayMatch()
+
 bool Tablero::hayMatch()
+//Este metodo se encarga de retornar true si en alguna parte del tablero hay un match a realizar.
 {
 	int filas,columnas; //Variables para recorrer el for, necesario para saber en qué fila y 
-	//columna del tablero está el puntero en algún momento.
-	for (filas = 1; filas < (F-1); filas++)//For externo que recorre las filas.
+	//columna del tablero está el puntero en algún momento
+	
+	//Busca matchs verticales.
+	for (filas = 1; filas < (F-1); filas++)//For externo que recorre las filas. //Recorre desde 1 hasta 6
 		{
-		for (columnas = 0; columnas < C; columnas++) //for interno para las columnas
+		for (columnas = 0; columnas < C; columnas++) //for interno para las columnas //recorre todas las columnas
 			{
+				
 			if(tablero[filas][columnas].getTipo() == tablero[filas + 1][columnas].getTipo() 
 			   and tablero[filas][columnas].getTipo() == tablero[filas - 1][columnas].getTipo())
+			   //Hace la misma comparación del hacer match, pero en este caso retorna true de cumplirse 
+			   //que las 3 posiciones son iguales
 			return true;
 			}
 		}
 
-	for (filas = 0; filas < F; filas++)//For externo que recorre las filas.
+        //Busca matchs horizontales
+	for (filas = 0; filas < F; filas++)//For externo que recorre las filas. //recorre todas las filas
 		{
-		for (columnas = 1; columnas < (C-1); columnas++) //for interno para las columnas
+		for (columnas = 1; columnas < (C-1); columnas++) //for interno para las columnas //recorre desde 1 hasta 6
 			{
 			if(tablero[filas][columnas].getTipo() == tablero[filas][columnas + 1].getTipo() 
 			   and tablero[filas][columnas].getTipo() == tablero[filas][columnas - 1].getTipo())
+			   //realiza la misma comparación pero esta vez en columnas
 				return true;
 			}
 		}
 	return false;
 }
 
+
+//Metodo matchTotal()
 void Tablero::matchTotal(Juego &game)
+//Este metodo se encarga de realizar todo el proceso después de intentar hacer un match.
+
 {
+	//Solo corre si hay algún match realizado en el tablero
 	while (hayMatch())
 	{
-		hacerMatch(game);
+		hacerMatch(game); // Chace el match (cambiar a 0)
 		
-		rellenarMatriz();
+		rellenarMatriz(); //llena la matriz.
 
 
 	}
