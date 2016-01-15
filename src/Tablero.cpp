@@ -3,6 +3,8 @@
 /*
  * 3matchgame
  * Copyright (C) JHON ALEJANDRIO OROBIO ARCE 2016 <jhonaoa@s3pc24>
+ 		SEBASTIÁN VILLEGAS GUTIÉRREZ <jhoan.villegas@correounivalle.edu.co >
+ 		DANIEL FELIPE BUENO GARCIA <daniel.bueno@correounivalle.edu.co>
  * 
 3matchgame is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
