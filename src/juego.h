@@ -25,9 +25,9 @@
 		 4 tipos de requerimientos para completar el nivel.
 		 un tiempo, que en caso de terminarse, finalizará el nivel.
 	Además se puede disminuir en una unidad la cantidad de cada uno de estos requerimientos
-	y se les puede asignar un valor inicial.
+	y se les puede asignar un valor inicial. También se puede verificar si los 4 requerimientos son 0
 
-	Colaboración: Ninguna.
+	Colaboración: .
  */
 
 #ifndef _JUEGO_H_
