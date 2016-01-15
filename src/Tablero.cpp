@@ -50,33 +50,33 @@ void Tablero::getTableroInicial()
     int i,j;
 			
 
-    for (i = 0; i < F; i++)
+    for (i = 0; i < F; i++)  // Ciclo para recorrer y mostrar la matriz por filas.
         {
-			cout<<"           ";
+			cout<<"           "; // imprime espacios para mostrar tablero centrado
 
-			for(int k = 0; k< F;k++)
+			for(int k = 0; k< F;k++) // ciclo para mostrar separacion entre cada fila.
             {
                 cout<<"-----";
             }
 			
-            cout<<endl;
-			cout<<"           ";
+            cout<<endl;// salto de linea
+			cout<<"           "; // imprime espacios para mostrar tablero centrado
 
 
-            for(j = 0; j< C; j++)
+            for(j = 0; j< C; j++) // ciclo para imprimir las componentes de tablero[][]
             {
 				
 
-                if (i == fila and j ==columna )
+                if (i == fila and j ==columna )  // Condicional para imprimir la componente donde se encuentra el "cursor"
                 {
                     cout<<"[ "<<tablero[i][j].getTipo()<<" ]";
-                }else
+                }else // si no está el cursor sobre la componente 
                 {
 
-					cout<<"  "<<tablero[i][j].getTipo()<<"  ";
+					cout<<"  "<<tablero[i][j].getTipo()<<"  "; // imprimir el tipo de la CAJA
                 }
             }
-        cout<<endl;
+        cout<<endl;// 2saltos de linea
         cout<<endl;
         }
 
