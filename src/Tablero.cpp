@@ -50,43 +50,39 @@ void Tablero::getTableroInicial()
     int i,j;
 			
 
-    for (i = 0; i < F; i++)
+    for (i = 0; i < F; i++) // Ciclo para recorrer y mostrar la matriz por filas.
         {
-			cout<<"           ";
+			cout<<"           "; // imprime espacios para mostrar tablero centrado
 
-			for(int k = 0; k< F;k++)
+			for(int k = 0; k< F;k++) // ciclo para mostrar separacion entre cada fila.
             {
                 cout<<"-----";
             }
 			
-            cout<<endl;
-			cout<<"           ";
+            cout<<endl; // salto de linea
+			cout<<"           "; // imprime espacios para mostrar tablero centrado
 
 
-            for(j = 0; j< C; j++)
+            for(j = 0; j< C; j++) // ciclo para imprimir las componentes de tablero[][]
             {
 				
 
-                if (i == fila and j ==columna )
+                if (i == fila and j ==columna ) // Condicional para imprimir la componente donde se encuentra el "cursor"
                 {
-                    cout<<"[ "<<tablero[i][j].getTipo()<<" ]";
-                }else
+                    cout<<"[ "<<tablero[i][j].getTipo()<<" ]";  // 
+                }else // si el ""
                 {
 
 					cout<<"  "<<tablero[i][j].getTipo()<<"  ";
                 }
             }
-        cout<<endl;
+        cout<<endl; // 2saltos de linea
         cout<<endl;
         }
 
 
 }
-//http://cboard.cprogramming.com/c-programming/63166-kbhit-linux.html
-/*Esta función se deriva de una galería usada en windows para el uso del teclado durante 
-la ejecución del programa,dado que en linux no está presente esta galería y con la intención de 
-darle un poco más de dinamismo al programa, se utilizó este método de la fuente anteriormente
-especificada*/
+
 
 int Tablero::kbhit(void)
 {
@@ -115,30 +111,22 @@ int Tablero::kbhit(void)
 
 void Tablero::moverseEnTablero(Juego &game)
 {
-    	bool repeat = true;//variable utilizada para la ejecución del ciclo que mantiene
-    	//la interacción del teclado activa
-	int S = game.getTiempo () % 60 ;/*la variable S recibe el atributo tiempo de el objeto
-	juego y realiza el módulo para presentar el tiempo en el reloj*/
-	int M = game.getTiempo() / 60;/*la variable M recibe el atributo tiempo de la clase Juego
-	y lo divide entre 60 para presentar el equivalente en segundos del tiempo*/
-	bool salir = true;/*esta variable se utiliza para mantener el ciclo del reloj y el movimiento*/
-	
-    while(repeat)//se usa un ciclo while para mantener la interacción con el teclado
+    bool repeat = true;
+	int S = game.getTiempo () % 60 ;
+	int M = game.getTiempo() / 60;
+	bool salir = true;
+    while(repeat)//se usa un ciclo while para mantener la interacción con el teclad
     //activa hasta que se requiera.
         {   
 			
 			
-			while(salir)/*ciclo responsable de los cambios en el reloj y captura de los movimientos
-			por medio del método kbhit y getchar */ 
+			while(salir)
 			{
 			
 				system("clear");
 			
-				cout<<M<<":"<<S<<endl;//muestra los minutos y los seguundos por medio de un cout
+				cout<<M<<":"<<S<<endl;
 				cout<<endl;
-				
-				/*lista de mensajes a mostrar durante la ejecución del programa, los requerimientos
-				de los animales a liberar y l aimpresión del tablero por primera vez*/
 				cout<<"   Debes liberar  estos animales para superar el nivel: "<<endl;
 				cout<<endl;
 				cout<<"Leones(1): "<<game.getRequerimientoTipo1 ()<<"   ";
@@ -150,38 +138,32 @@ void Tablero::moverseEnTablero(Juego &game)
 				
 				Tablero::getTableroInicial();
 			
-				S--;//Reducción de la variable S, responsable de mostrar los segundos,
-				//S--, en uno por ciclo 
+				S--;
 
-				if(M==0 and S== 30)/*este if es responsable de dar el aviso cuando quedan 30 segundos
-				de juego */
+				if(M==0 and S== 30)
 				{
 
 					cout<<"Quedan menos de treinte segundos de juego, apúrele"<<endl;
 					cout<<endl;
 					
 				}
-					
-				/*Este if es responsable de terminar el juego en caso de que los requerimientos no hayan sido cumplidos o 
-				cuando se haya acabado el tiempo del juego, funciona cambiando los valores de los cuales dependen los 
-				diferentes ciclos del método movimiento y regresando al usuario al menú principal*/
-				if (M== 0 and S == 0 or game.requerimientosCumplidos () == true)
+
+				if (M== 0 and S == 0 
+					or game.requerimientosCumplidos () == true)
 				{
 					cout<<"Has perdido!!, Loserrrrrr!!"<<endl;
 					salir = false;
 					repeat = false;
 				}
 				
-				if (S == -1)/*este if es responsable de reducir el valor de minutos cuando el valor de segundos sea
-				menor a cero*/
+				if (S == -1)
 				{
 					S = 59;
 					M --;
 				}
 			
 					
-				sleep(1);/*este sleep es necesario para que la iteración del reloj se haga cada segundo
-				y no al ritmo de los ciclos del sistema */
+				sleep(1);
 				
 
             if (kbhit())//se usa el comando kbhit() para permitir
@@ -363,26 +345,26 @@ void Tablero::moverseEnTablero(Juego &game)
                                                             (*matriz).setTipo (aCambiar2);//cambia el contenido del puntero matriz por el de aCambiar2
                                                             Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
 
-								Tablero::hayMatch();
+															Tablero::hayMatch();
 
 
 
-									if (Tablero::hayMatch()==false)
-									{
-									sleep(1);
-									system("clear");
+															if (Tablero::hayMatch()==false)
+															{
+																sleep(1);
+																system("clear");
 
-                                                        		matriz = &tablero[fila][columna];//señala el puntero matriz a la posición  actual
+                                                        		matriz = &tablero[fila][columna];//señala el puntero matriz a la posición a la derecha de la actual
                                                         		aCambiar2 = (*matriz).getTipo();//alamacena el contenido de matriz en el atributo "aCambiar2"
                                                         		(*matriz).setTipo( aCambiar1);//cambia el contenido del puntero matriz por el almacenado en aCambiar1
-                                                        		matriz = &tablero[fila][moverColumnaD];//señala el puntero matriz a la posición a la derecha de la actual
+                                                        		matriz = &tablero[fila][moverColumnaD];//señala el puntero matriz a la posición que fue seleccionada
 
                                                         		(*matriz).setTipo(aCambiar2);//cambia el contenido del puntero matriz por el de aCambiar2
                                                         		Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
 
 
-									}else
-										this->matchTotal(game);//ejecución del método match total
+															}else
+																this->matchTotal(game);
 
                                                             repetir = false;//le da el valor a la variable repetir de false, para que salga del ciclo
                                                         }
@@ -412,13 +394,13 @@ void Tablero::moverseEnTablero(Juego &game)
                                                             Tablero::getTableroInicial();
 
 
-							       		Tablero::hayMatch();
+															Tablero::hayMatch();
 
 
-									if (Tablero::hayMatch()==false)
-									{
-									sleep(1);
-									system("clear");
+															if (Tablero::hayMatch()==false)
+															{
+																sleep(1);
+																system("clear");
                                                         		matriz = &tablero[fila][columna];
                                                         		aCambiar2 = (*matriz).getTipo();
                                                         		(*matriz).setTipo( aCambiar1);
@@ -426,10 +408,10 @@ void Tablero::moverseEnTablero(Juego &game)
                                                         		(*matriz).setTipo( aCambiar2);
                                                         		Tablero::getTableroInicial();
 
-									}else
-									Tablero::matchTotal(game);
+															}else
+																Tablero::matchTotal(game);
 
-									repetir = false;
+															repetir = false;
                                                         }
                                                     break;
 
@@ -537,109 +519,115 @@ void Tablero::moverseEnTablero(Juego &game)
 	}
 }
 
-
+//CargarTaleroDesdeArchivo(Juego &juego) recibe un juego por referencia, para modificar algunos de sus atributos
+// El método guarda la informacion encontrada en un archivo plano donde se guardó previamente un juego
+//y ajusta el nivel, los requerimientos, el tiempo
 
 void Tablero::cargarTableroDesdeArchivo(Juego &juego)
 {
 	
 
-	ifstream archivoTexto("Guardado.txt");
+	ifstream archivoTexto("Guardado.txt"); // declaración de que se leera información desde un archivo externo
+	//Ifstream - nombre de variable - (nombre de archivo a buscar) -> busca donde se guarda la información al guardar nivel.
 
-	if(archivoTexto.fail())
+	if(archivoTexto.fail()) //condicional para cuando no logre abrir el archivo buscado.
 	{
 
 		
-		cerr  << "No Fue Posible Cargar Último Archivo Guardado";
-		cout << endl;
+		cerr  << "No Fue Posible Cargar Último Archivo Guardado"; // mostrar mensaje de error
+		cout << endl; //salto de linea
 	
-	}
+	} // fin condicional
 
-	int aux ; 
+	int aux ; // declaracion de variable auxiliar para guardar información desde el archivo externo,
 	
-	archivoTexto >> aux;
-	juego.setNivel(aux);
+	archivoTexto >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setNivel(aux);// Setea el nivel del JUEGO, usando como parámetro la variable auxiliar
 
-	archivoTexto >> aux; 
-	juego.setTiempo(aux);
+	archivoTexto >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTiempo(aux);// Setea el tiempo del JUEGO, usando como parámetro la variable auxiliar
 	
-	archivoTexto >> aux;
-	juego.setTipo1(aux);
+	archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo1(aux);// Setea los requerimientos de TIPO 1 del JUEGO, usando como parámetro la variable auxiliar
 
-	archivoTexto >> aux;
-	juego.setTipo2(aux);
+	archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo2(aux);// Setea los requerimientos de TIPO 2 del JUEGO, usando como parámetro la variable auxiliar
 
-	archivoTexto >> aux;
-	juego.setTipo3(aux);
+	archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo3(aux);// Sete los requerimientos del TIPO 3 del JUEGO, usando como parámetro la variable auxiliar
 
-	archivoTexto >> aux;
-	juego.setTipo4(aux) ; 
+	archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo4(aux) ; // Setea los requerimientos del TIPO 4 del JUEGO, usando como parámetro la variable auxiliar
 
-	for (int filas = 0; filas < F ; filas++)
+	for (int filas = 0; filas < F ; filas++) // ciclo para recorrer y guardar la matriz del archivo de texto
 	{
-		for(int columnas = 0 ; columnas < C ; columnas++)
+		for(int columnas = 0 ; columnas < C ; columnas++) // ciclo interno para recorrer las componentes de una fila
 		{
-			archivoTexto >> aux;
-			tablero[filas][columnas].setTipo(aux);	
+			archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin
+						// para guardar información en la  variable auxiliar.
+			tablero[filas][columnas].setTipo(aux);	//Setea el TIPO de animal correspondiente a la CAJA de la 
+						//posición [i][j] usando la variable auxiliar como parámetro.
 		} 
 	} 
 
 	
 }
 
-
+//leerTableroDesdeTexto(Juego , int) recibe un juego por ref. y un entero, para setear los atributos de un juego, y para seleccionar el nivel
+//Busca la información en un archivo plano para asignar los valores de los atributos del juego, y mostrar el tablero inicial del nivel escogido.
 void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 {
-	Juego *punteroJuego = &game;
+	Juego *punteroJuego = &game; // declaración de puntero que apunta a un juego que entra por ref.
 	
 	//Caja *puntero =  &tablero[0][0];
 	
-	int aux = 0; // DOUBLE porque maneja unidades de tiempo en milisegundos.
-	//double *punteroAux = &aux;  //DOUBLE porque apunta unidades de tiempo en milisegundos.
+	int aux = 0; // declaracion de variable auxiliar para guardar información desde el archivo externo,
 
-	switch (lv) /*Posibilidades de matriz inicial para el nivel 1 por medio de un switch
+	switch (lv) /*Posibilidades de matriz inicial para el nivel escogido por medio de un switch
 						En todas los casos posibles sea crea un IFSTREAM. pero en cada caso se accede
 						a un archivo .txt diferente. */
 	{
-		case 1:
+		case 1: // caso cuando el nivel pedido sea el 1 
 		{ // caso en que numero aleatorio % 3 sea cero
-			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1.
-											//Archivo Buscado: nivel1.txt
+			ifstream nivel1 ("nivel1.txt"); //declaración de que se leera información desde un archivo externo
+				//Ifstream - nombre de variable - (nombre de archivo a buscar) -> busca donde el archivo donde está el nivel 1
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
+			//condicional para cuando no logre abrir el archivo buscado
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 1" ;
 				cout << endl;
 				
 			}
 
-			nivel1 >> aux; 
-			(*punteroJuego).setNivel(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setNivel(aux);//Setea el nivel del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTiempo(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTiempo(aux); //Setea el tiempo del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux ; 
-			(*punteroJuego).setTipo1(aux);
+			nivel1 >> aux ; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo1(aux); // Setea los requerimientos de TIPO 1 del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTipo2(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo2(aux);// Setea los requerimientos de TIPO 2 del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTipo3(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo3(aux);// Setea los requerimientos de TIPO 3 del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTipo4(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo4(aux);// Setea los requerimientos de TIPO 4 del JUEGO, usando como parámetro la variable auxiliar
 
 			//nivel1 >> aux; 
 			//(*punteroJuego).setTipoTortuga(aux);
 			
 			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
-			//en un arreglo.
+			//en un arreglo. 
 			{
 				for (int j = 0 ; j < 8 ; j++)
 				{
 				
 					
-					nivel1 >> aux;
+					nivel1 >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
 
 					tablero[i][j].setTipo(aux); /* Guarda lo que haya en el archivo  nivel1.txt en
 										la posición (i,j) de la matriz definida.*/
@@ -648,12 +636,13 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 		}
 		break;
 			
-		case 2:
+		case 2: //caso cuando el nivel pedido sea el 2 : HACE EXACTAMENTE LO MISMO QUE EL CASO 1
+		//PERO BUSCA UN NIVEL DIFERENTE (2)
 		{
 			//caso en que numero aleatorio % 3 sea 1
-			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
-											//Archivo Buscado: nivel1-2.txt
-			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
+			ifstream nivel1 ("nivel1-2.txt");//declaración de que se leera información desde un archivo externo
+				//Ifstream - nombre de variable - (nombre de archivo a buscar) -> busca donde el archivo donde está el nivel 1
+			if (nivel1.fail() ) // condicional para cuando lo logre
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 2" ;
 				cout << endl;
@@ -695,7 +684,9 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 		}
 		break;
 			
-		case 3:
+		case 3: // Caso cuando el nivel pedido sea el 3. HACE EXACTAMENTE LO MISMO QUE EL CASO 1
+		//PERO BUSCA UN NIVEL DIFERENTE (3)
+		
 		{//caso en que numero aleatorio % 3 sea 2:
 			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-3.txt
@@ -741,14 +732,15 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 		}
 		break;
 		
-		default :
+		default : //por defecto: no hace nada, sale del método.
 			break;
 	}
 } 
 
 
-
-void Tablero::guardarTableroEnArchivo(Juego &juego) //entra la dirección en memoria de juego
+//guardarTableroEnArchivo(Juego ) // recibe un juego por ref. 
+//Crea un archivo de texto donde imprime la información correspondiente al nivel, 
+void Tablero::guardarTableroEnArchivo(Juego &juego) 
 {
 	 Juego *punteroJuego = &juego;
 
