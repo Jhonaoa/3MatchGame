@@ -532,48 +532,54 @@ void Tablero::moverseEnTablero(Juego &game)
 }
 
 
-
+//CargarTaleroDesdeArchivo(Juego &juego) recibe un juego por referencia, para modificar algunos de sus atributos
+// El método guarda la informacion encontrada en un archivo plano donde se guardó previamente un juego
+//y ajusta el nivel, los requerimientos, el tiempo
 void Tablero::cargarTableroDesdeArchivo(Juego &juego)
 {
 	
 
-	ifstream archivoTexto("Guardado.txt");
+	ifstream archivoTexto("Guardado.txt");// declaración de que se leera información desde un archivo externo
+ +	//Ifstream - nombre de variable - (nombre de archivo a buscar) -> busca donde se guarda la información al guardar nivel.
 
-	if(archivoTexto.fail())
+	if(archivoTexto.fail())//condicional para cuando no logre abrir el archivo buscado.
 	{
 
 		
-		cerr  << "No Fue Posible Cargar Último Archivo Guardado";
-		cout << endl;
+		cerr  << "No Fue Posible Cargar Último Archivo Guardado";// mostrar mensaje de error
+		cout << endl;//salto de linea
 	
-	}
+	} // fin condicional
 
-	int aux ; 
+	int aux ;  // declaracion de variable auxiliar para guardar información desde el archivo externo,
 	
-	archivoTexto >> aux;
-	juego.setNivel(aux);
+	archivoTexto >> aux;  // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setNivel(aux);// Setea el nivel del JUEGO, usando como parámetro la variable auxiliar
 
-	archivoTexto >> aux; 
-	juego.setTiempo(aux);
+	archivoTexto >> aux;  // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTiempo(aux);// Setea el tiempo del JUEGO, usando como parámetro la variable auxiliar
 	
-	archivoTexto >> aux;
-	juego.setTipo1(aux);
+	archivoTexto >> aux;/ usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo1(aux);// Setea los requerimientos de TIPO 1 del JUEGO, usando como parámetro la variable auxiliar
 
-	archivoTexto >> aux;
-	juego.setTipo2(aux);
+	archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo2(aux);// Setea los requerimientos de TIPO 2 del JUEGO, usando como parámetro la variable auxiliar
 
-	archivoTexto >> aux;
-	juego.setTipo3(aux);
+	archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo3(aux);// Sete los requerimientos del TIPO 3 del JUEGO, usando como parámetro la variable auxiliar
+  
 
-	archivoTexto >> aux;
-	juego.setTipo4(aux) ; 
+	archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+	juego.setTipo4(aux) ; // Setea los requerimientos del TIPO 4 del JUEGO, usando como parámetro la variable auxiliar
 
-	for (int filas = 0; filas < F ; filas++)
+	for (int filas = 0; filas < F ; filas++)// ciclo para recorrer y guardar la matriz del archivo de texto
 	{
-		for(int columnas = 0 ; columnas < C ; columnas++)
+		for(int columnas = 0 ; columnas < C ; columnas++)// ciclo interno para recorrer las componentes de una fila
 		{
-			archivoTexto >> aux;
-			tablero[filas][columnas].setTipo(aux);	
+			archivoTexto >> aux;// usa el nombre de la variable IFSTREAM similar al cin
+ +						// para guardar información en la  variable auxiliar.
+			tablero[filas][columnas].setTipo(aux);	//Setea el TIPO de animal correspondiente a la CAJA de la 
+ +						//posición [i][j] usando la variable auxiliar como parámetro.
 		} 
 	} 
 
