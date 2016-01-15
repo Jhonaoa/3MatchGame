@@ -586,69 +586,73 @@ void Tablero::cargarTableroDesdeArchivo(Juego &juego)
 	
 }
 
-
+//leerTableroDesdeTexto(Juego , int) recibe un juego por ref. y un entero, para setear los atributos de un juego, y para seleccionar el nivel
+ //Busca la información en un archivo plano para asignar los valores de los atributos del juego, y mostrar el tablero inicial del nivel escogido.
 void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 {
-	Juego *punteroJuego = &game;
+	Juego *punteroJuego = &game;// declaración de puntero que apunta a un juego que entra por ref.
 	
 	//Caja *puntero =  &tablero[0][0];
 	
-	int aux = 0; // DOUBLE porque maneja unidades de tiempo en milisegundos.
-	//double *punteroAux = &aux;  //DOUBLE porque apunta unidades de tiempo en milisegundos.
+	int aux = 0; // declaracion de variable auxiliar para guardar información desde el archivo externo,
 
-	switch (lv) /*Posibilidades de matriz inicial para el nivel 1 por medio de un switch
+	switch (lv) /*Posibilidades de matriz inicial para el nivel escogido por medio de un switch
 						En todas los casos posibles sea crea un IFSTREAM. pero en cada caso se accede
 						a un archivo .txt diferente. */
 	{
-		case 1:
+		case 1: // caso cuando el nivel pedido sea el 1 
 		{ // caso en que numero aleatorio % 3 sea cero
-			ifstream nivel1 ("nivel1.txt"); //TIPO: ifstream, Nombre de Variable: Nivel1.
-											//Archivo Buscado: nivel1.txt
-			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
+			ifstream nivel1 ("nivel1.txt"); 
+ +				//Ifstream - nombre de variable - (nombre de archivo a buscar) -> busca donde el archivo
+ 
+			if (nivel1.fail() ) 
+			//condicional para cuando no logre abrir el archivo buscado
 			{
 				cerr << "ERROR AL ABRIR ARCHIVO 1" ;
 				cout << endl;
 				
 			}
 
-			nivel1 >> aux; 
-			(*punteroJuego).setNivel(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setNivel(aux);//Setea el nivel del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTiempo(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTiempo(aux);//Setea el tiempo del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux ; 
-			(*punteroJuego).setTipo1(aux);
+			nivel1 >> aux ;  // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo1(aux); // Setea los requerimientos de TIPO 1 del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTipo2(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo2(aux);// Setea los requerimientos de TIPO 2 del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTipo3(aux);
+			nivel1 >> aux; // usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo3(aux);// Setea los requerimientos de TIPO 3 del JUEGO, usando como parámetro la variable auxiliar
 
-			nivel1 >> aux; 
-			(*punteroJuego).setTipo4(aux);
+			nivel1 >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+			(*punteroJuego).setTipo4(aux);// Setea los requerimientos de TIPO 4 del JUEGO, usando como parámetro la variable auxiliar
 
 			//nivel1 >> aux; 
 			//(*punteroJuego).setTipoTortuga(aux);
 			
 			for (int i = 0 ; i < 8 ; i++) // Ciclo FOR para guardar cada número de la matriz
-			//en un arreglo.
+			
 			{
 				for (int j = 0 ; j < 8 ; j++)
 				{
 				
 					
-					nivel1 >> aux;
+					nivel1 >> aux;// usa el nombre de la variable IFSTREAM similar al cin para guardar información en la  variable auxiliar.
+  
 
-					tablero[i][j].setTipo(aux); /* Guarda lo que haya en el archivo  nivel1.txt en
-										la posición (i,j) de la matriz definida.*/
+					tablero[i][j].setTipo(aux); // Guarda lo que haya en el archivo  nivel1.txt en
+  									//para setaear el tipo de caja. 
 				}
 			}
 		}
 		break;
 			
-		case 2:
+		case 2://caso cuando el nivel pedido sea el 2 : HACE EXACTAMENTE LO MISMO QUE EL CASO 1
+ 		//PERO BUSCA UN NIVEL DIFERENTE (2)
 		{
 			//caso en que numero aleatorio % 3 sea 1
 			ifstream nivel1 ("nivel1-2.txt");//TIPO: ifstream, Nombre de Variable: nivel1.
