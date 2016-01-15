@@ -150,32 +150,38 @@ void Tablero::moverseEnTablero(Juego &game)
 				
 				Tablero::getTableroInicial();
 			
-				S--;//Reducción de la variable S, responsable de mostrar los segundos, S--, en uno por ciclo 
+				S--;//Reducción de la variable S, responsable de mostrar los segundos,
+				//S--, en uno por ciclo 
 
-				if(M==0 and S== 30)
+				if(M==0 and S== 30)/*este if es responsable de dar el aviso cuando quedan 30 segundos
+				de juego */
 				{
 
 					cout<<"Quedan menos de treinte segundos de juego, apúrele"<<endl;
 					cout<<endl;
 					
 				}
-
-				if (M== 0 and S == 0 
-					or game.requerimientosCumplidos () == true)
+					
+				/*Este if es responsable de terminar el juego en caso de que los requerimientos no hayan sido cumplidos o 
+				cuando se haya acabado el tiempo del juego, funciona cambiando los valores de los cuales dependen los 
+				diferentes ciclos del método movimiento y regresando al usuario al menú principal*/
+				if (M== 0 and S == 0 or game.requerimientosCumplidos () == true)
 				{
 					cout<<"Has perdido!!, Loserrrrrr!!"<<endl;
 					salir = false;
 					repeat = false;
 				}
 				
-				if (S == -1)
+				if (S == -1)/*este if es responsable de reducir el valor de minutos cuando el valor de segundos sea
+				menor a cero*/
 				{
 					S = 59;
 					M --;
 				}
 			
 					
-				sleep(1);
+				sleep(1);/*este sleep es necesario para que la iteración del reloj se haga cada segundo
+				y no al ritmo de los ciclos del sistema */
 				
 
             if (kbhit())//se usa el comando kbhit() para permitir
@@ -357,26 +363,26 @@ void Tablero::moverseEnTablero(Juego &game)
                                                             (*matriz).setTipo (aCambiar2);//cambia el contenido del puntero matriz por el de aCambiar2
                                                             Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
 
-															Tablero::hayMatch();
+								Tablero::hayMatch();
 
 
 
-															if (Tablero::hayMatch()==false)
-															{
-																sleep(1);
-																system("clear");
+									if (Tablero::hayMatch()==false)
+									{
+									sleep(1);
+									system("clear");
 
-                                                        		matriz = &tablero[fila][columna];//señala el puntero matriz a la posición a la derecha de la actual
+                                                        		matriz = &tablero[fila][columna];//señala el puntero matriz a la posición  actual
                                                         		aCambiar2 = (*matriz).getTipo();//alamacena el contenido de matriz en el atributo "aCambiar2"
                                                         		(*matriz).setTipo( aCambiar1);//cambia el contenido del puntero matriz por el almacenado en aCambiar1
-                                                        		matriz = &tablero[fila][moverColumnaD];//señala el puntero matriz a la posición que fue seleccionada
+                                                        		matriz = &tablero[fila][moverColumnaD];//señala el puntero matriz a la posición a la derecha de la actual
 
                                                         		(*matriz).setTipo(aCambiar2);//cambia el contenido del puntero matriz por el de aCambiar2
                                                         		Tablero::getTableroInicial();//imprime el tablero con los cambios realizados
 
 
-															}else
-																this->matchTotal(game);
+									}else
+										this->matchTotal(game);//ejecución del método match total
 
                                                             repetir = false;//le da el valor a la variable repetir de false, para que salga del ciclo
                                                         }
@@ -406,13 +412,13 @@ void Tablero::moverseEnTablero(Juego &game)
                                                             Tablero::getTableroInicial();
 
 
-															Tablero::hayMatch();
+							       		Tablero::hayMatch();
 
 
-															if (Tablero::hayMatch()==false)
-															{
-																sleep(1);
-																system("clear");
+									if (Tablero::hayMatch()==false)
+									{
+									sleep(1);
+									system("clear");
                                                         		matriz = &tablero[fila][columna];
                                                         		aCambiar2 = (*matriz).getTipo();
                                                         		(*matriz).setTipo( aCambiar1);
@@ -420,10 +426,10 @@ void Tablero::moverseEnTablero(Juego &game)
                                                         		(*matriz).setTipo( aCambiar2);
                                                         		Tablero::getTableroInicial();
 
-															}else
-																Tablero::matchTotal(game);
+									}else
+									Tablero::matchTotal(game);
 
-															repetir = false;
+									repetir = false;
                                                         }
                                                     break;
 
