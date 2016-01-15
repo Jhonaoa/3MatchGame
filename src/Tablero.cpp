@@ -699,8 +699,9 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 		}
 		break;
 			
-		case 3:
-		{//caso en que numero aleatorio % 3 sea 2:
+		case 3:// Caso cuando el nivel pedido sea el 3. HACE EXACTAMENTE LO MISMO QUE EL CASO 1
+ +		//PERO BUSCA UN NIVEL DIFERENTE (3)
+		{
 			ifstream nivel1 ("nivel1-3.txt"); //TIPO: ifstream, Nombre de Variable: nivel1.
 											//Archivo Buscado: nivel1-3.txt
 			if (nivel1.fail() ) // Si hay error al abrir el archivo entonces imprimir mensaje de error.
@@ -745,43 +746,53 @@ void Tablero::leerTableroDesdeTexto(Juego &game, int lv )
 		}
 		break;
 		
-		default :
+		default ://por defecto: no hace nada, sale del método.
 			break;
 	}
 } 
 
 
-
+//guardarTableroEnArchivo(Juego ) // recibe un juego por ref. 
+ //Crea un archivo de texto donde imprime la información correspondiente al nivel, 
 void Tablero::guardarTableroEnArchivo(Juego &juego) //entra la dirección en memoria de juego
 {
-	 Juego *punteroJuego = &juego;
+	 Juego *punteroJuego = &juego;// puntero que amarra el JUEGO que entra.
 
-	ofstream datosGuardados ("Guardado.txt"); 
+	ofstream datosGuardados ("Guardado.txt");   // declaración de dato OFSTREAM: Se escribirá en un archivo, información del programa.
+ 	//ofstream - nombre de variable - (nombre de archivoque se creará) -> crea el archivo indicado.
 
 	datosGuardados <<  juego.getNivel() << "\n" ; 
 
-	datosGuardados << (*punteroJuego).getTiempo() << "\n" ;
+	datosGuardados << (*punteroJuego).getTiempo() << "\n" ;//usa el nombre de la variable OFSTREAM similar a un cout, 
+ 	//e imprime en el archivo el tiempo restante, luego un salto de línea.
 
-	datosGuardados << (*punteroJuego).getRequerimientoTipo1() << "\n" ;
+	datosGuardados << (*punteroJuego).getRequerimientoTipo1() << "\n" ;// usa el nombre de la variable tiempo OFSTREAM 
+ 	//para imprimir en el archivo la cantidad de requerimientos tipo1 que faltan por liberar, luego un salto de línea.
+  
 
-	datosGuardados << (*punteroJuego).getRequerimientoTipo2() << "\n" ;
+	datosGuardados << (*punteroJuego).getRequerimientoTipo2() << "\n" ;// usa el nombre de la variable tiempo OFSTREAM 
+  	//para imprimir en el archivo la cantidad de requerimientos tipo2 que faltan por liberar, luego un salto de línea.
 
-	datosGuardados << (*punteroJuego).getRequerimientoTipo3() << "\n" ;
+	datosGuardados << (*punteroJuego).getRequerimientoTipo3() << "\n" ;// usa el nombre de la variable tiempo OFSTREAM 
+ +	//para imprimir en el archivo la cantidad de requerimientos tipo3 que faltan por liberar, luego un salto de línea.
 
-	datosGuardados << (*punteroJuego).getRequerimientoTipo4() << "\n" ;
+	datosGuardados << (*punteroJuego).getRequerimientoTipo4() << "\n" ;// usa el nombre de la variable tiempo OFSTREAM 
+ +	//para imprimir en el archivo la cantidad de requerimientos tipo4 que faltan por liberar, luego un salto de línea.
+  
 
 	//datosGuardados << (punteroJuego).getRequerimientoTortuga() << "\n" ;
 
-	for (int i = 0; i < F; i++)
+	for (int i = 0; i < F; i++) //ciclo para recorrer la matriz.
 	{
-		for (int j = 0 ; j < C ; j++)
+		for (int j = 0 ; j < C ; j++) //ciclo interno para recorrer las componentes de un fila de la matriz.
 		{
 				
-			datosGuardados << tablero[i][j].getTipo() << " ";
+			datosGuardados << tablero[i][j].getTipo() << " ";//usa el nombre de la variable OFSTREAM para imprimir en el archivo el tipo correspondiente a la
+ +			//CAJA de la componente [i][j] del tablero separados por espacios
 			
-		}
+		}// fin ciclo interno
 
-		datosGuardados << "\n" ;
+		datosGuardados << "\n" ;// imprime salto de linea en el archivo
 	}
 	
 
