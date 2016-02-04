@@ -1,3 +1,4 @@
+
 #include "ficha.h"
 
 /* Constructor Ficha: el parámetro numero se genera de manera aleatoria
@@ -10,7 +11,7 @@ Ficha::Ficha( int numero)
 	
 }
 
-//destructor
+//Destructor
 Ficha::~Ficha()
 {
 }
